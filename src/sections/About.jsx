@@ -2,7 +2,7 @@ import Section from '../components/layout/Section'
 import SectionHeader from '../components/layout/SectionHeader'
 import Reveal from '../components/layout/Reveal'
 import StatCard from '../components/about/StatCard'
-import AboutVisual from '../components/about/AboutVisual'
+import BrandingCard from '../components/about/BrandingCard'
 import { ABOUT_PARAGRAPHS, ABOUT_HIGHLIGHTS, ABOUT_STATS } from '../data/about'
 
 /**
@@ -43,7 +43,7 @@ export default function About() {
 
         {/* Visual column */}
         <Reveal delay={0.15}>
-          <AboutVisual />
+          <BrandingCard />
         </Reveal>
       </div>
 

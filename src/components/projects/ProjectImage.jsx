@@ -3,7 +3,7 @@ import { cn } from '../../lib/cn'
 /**
  * Renders a real screenshot when `src` is provided, otherwise falls
  * back to a branded gradient with the project's initials — the same
- * fallback pattern used by ProfileCard/AboutVisual. Shared by
+ * fallback pattern used by ProfileCard/BrandingCard. Shared by
  * ProjectCard (thumbnail) and ProjectModal (header image) so the
  * fallback logic only exists once.
  */
