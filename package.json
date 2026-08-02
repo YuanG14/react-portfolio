@@ -1,11 +1,7 @@
 {
   "name": "react-portfolio",
   "private": true,
-<<<<<<< HEAD
   "version": "0.1.0",
-=======
-  "version": "0.0.0",
->>>>>>> 92967a48d10f83cfcb6df8a2c02e58f3c89c54bc
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -15,7 +11,6 @@
   },
   "dependencies": {
     "react": "^19.2.8",
-<<<<<<< HEAD
     "react-dom": "^19.2.8",
     "react-router-dom": "^7.1.1",
     "framer-motion": "^11.15.0",
@@ -31,12 +26,6 @@
   "devDependencies": {
     "@eslint/js": "^10.0.1",
     "@tailwindcss/vite": "^4.0.0",
-=======
-    "react-dom": "^19.2.8"
-  },
-  "devDependencies": {
-    "@eslint/js": "^10.0.1",
->>>>>>> 92967a48d10f83cfcb6df8a2c02e58f3c89c54bc
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^6.0.4",
@@ -44,10 +33,7 @@
     "eslint-plugin-react-hooks": "^7.1.1",
     "eslint-plugin-react-refresh": "^0.5.3",
     "globals": "^17.7.0",
-<<<<<<< HEAD
     "tailwindcss": "^4.0.0",
-=======
->>>>>>> 92967a48d10f83cfcb6df8a2c02e58f3c89c54bc
     "vite": "^8.2.0"
   }
 }
