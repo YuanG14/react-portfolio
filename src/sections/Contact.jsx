@@ -7,7 +7,6 @@ import Section from '../components/layout/Section'
 import SectionHeader from '../components/layout/SectionHeader'
 import Reveal from '../components/layout/Reveal'
 import Button from '../components/ui/Button'
-import Magnetic from '../components/ui/Magnetic'
 import Input from '../components/ui/Input'
 import TextArea from '../components/ui/TextArea'
 import ContactInfoItem from '../components/contact/ContactInfoItem'
@@ -140,27 +139,25 @@ export default function Contact() {
               {...register('message')}
             />
 
-            <Magnetic className="sm:col-span-2">
-              <Button
-                type="submit"
-                variant="primary"
-                disabled={isSubmitting}
-                aria-busy={isSubmitting}
-                className="w-full sm:w-fit disabled:cursor-not-allowed disabled:opacity-60"
-              >
-                {isSubmitting ? (
-                  <>
-                    <FiLoader className="animate-spin" aria-hidden="true" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    Send message
-                    <FiSend aria-hidden="true" />
-                  </>
-                )}
-              </Button>
-            </Magnetic>
+            <Button
+              type="submit"
+              variant="primary"
+              disabled={isSubmitting}
+              aria-busy={isSubmitting}
+              className="sm:col-span-2 w-full sm:w-fit disabled:cursor-not-allowed disabled:opacity-60"
+            >
+              {isSubmitting ? (
+                <>
+                  <FiLoader className="animate-spin" aria-hidden="true" />
+                  Sending...
+                </>
+              ) : (
+                <>
+                  Send message
+                  <FiSend aria-hidden="true" />
+                </>
+              )}
+            </Button>
           </form>
         </Reveal>
       </div>
