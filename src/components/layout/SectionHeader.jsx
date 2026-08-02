@@ -30,7 +30,15 @@ export default function SectionHeader({
 }) {
   return (
     <Reveal className={cn(align === 'center' && 'text-center', className)}>
-      <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink-faint">{eyebrow}</p>
+      <p
+        className={cn(
+          'flex items-center gap-3 font-mono text-sm font-semibold uppercase tracking-[0.25em] text-ink',
+          align === 'center' && 'justify-center'
+        )}
+      >
+        <span aria-hidden="true" className="h-[2px] w-8 rounded-full bg-gradient-to-r from-purple to-cyan" />
+        {eyebrow}
+      </p>
 
       <h2 className="mt-4 text-display-lg font-display font-medium text-ink">
         {title} {accent && <span className="text-gradient-accent">{accent}</span>}

@@ -1,4 +1,4 @@
-import { FiGithub, FiExternalLink, FiArrowUpRight } from 'react-icons/fi'
+import { FiArrowUpRight } from 'react-icons/fi'
 import TiltCard from '../ui/TiltCard'
 import Button from '../ui/Button'
 import SkillPill from '../skills/SkillPill'
@@ -14,7 +14,7 @@ import ProjectImage from './ProjectImage'
  *   ProjectModal for this project (see sections/Projects.jsx)
  */
 export default function ProjectCard({ project, onViewDetails }) {
-  const { title, description, image, tech, highlights, links } = project
+  const { title, description, image, tech, highlights } = project
 
   return (
     <TiltCard className="h-full" contentClassName="glass flex h-full flex-col">
@@ -43,31 +43,7 @@ export default function ProjectCard({ project, onViewDetails }) {
           </ul>
         )}
 
-        <div className="mt-6 flex flex-wrap items-center gap-3 border-t border-border pt-6">
-          {links?.github && (
-            <Button
-              as="a"
-              href={links.github}
-              target="_blank"
-              rel="noreferrer"
-              variant="secondary"
-              className="px-4 py-2 text-xs"
-            >
-              <FiGithub aria-hidden="true" /> GitHub
-            </Button>
-          )}
-          {links?.demo && (
-            <Button
-              as="a"
-              href={links.demo}
-              target="_blank"
-              rel="noreferrer"
-              variant="secondary"
-              className="px-4 py-2 text-xs"
-            >
-              <FiExternalLink aria-hidden="true" /> Live Demo
-            </Button>
-          )}
+        <div className="mt-6 flex items-center border-t border-border pt-6">
           <Button
             type="button"
             onClick={() => onViewDetails(project)}
