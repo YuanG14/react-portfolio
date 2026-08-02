@@ -1,47 +1,27 @@
+import { Routes, Route } from 'react-router-dom'
 import { useLenis } from './hooks/useLenis'
-import GridBackground from './components/effects/GridBackground'
-import GradientBlobs from './components/effects/GradientBlobs'
-import Container from './components/ui/Container'
-import Reveal from './components/layout/Reveal'
-import Button from './components/ui/Button'
+import MainLayout from './layouts/MainLayout'
+import Home from './pages/Home'
+import NotFound from './pages/NotFound'
 
+/**
+ * Phase 1 — Foundation: routing + layout.
+ *
+ * MainLayout renders the background system, Navbar, and Footer once;
+ * individual pages only supply their own content via <Outlet />.
+ * Home is still a placeholder (see src/pages/Home.jsx) — Hero, About,
+ * Projects, and Contact are built section-by-section in later phases.
+ */
 function App() {
   useLenis()
 
   return (
-    <div className="relative min-h-screen bg-bg text-ink font-body">
-      <GradientBlobs />
-      <GridBackground />
-
-      <main className="relative z-10 flex min-h-screen flex-col items-center justify-center">
-        <Container className="text-center">
-          <Reveal>
-            <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink-faint">
-              Phase 0 — Foundation
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.1}>
-            <h1 className="mt-6 text-4xl font-semibold text-gradient-accent md:text-6xl">
-              Design system online.
-            </h1>
-          </Reveal>
-
-          <Reveal delay={0.2}>
-            <p className="mx-auto mt-5 max-w-md text-ink-muted">
-              Tailwind, Framer Motion, routing, forms, and the ambient
-              background layer are wired up. Move your cursor to see the
-              grid react — this scaffold is ready for the Hero section next.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.3} className="mt-8 flex items-center justify-center gap-4">
-            <Button variant="primary">Primary action</Button>
-            <Button variant="secondary">Secondary</Button>
-          </Reveal>
-        </Container>
-      </main>
-    </div>
+    <Routes>
+      <Route element={<MainLayout />}>
+        <Route index element={<Home />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   )
 }
 

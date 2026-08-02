@@ -26,6 +26,13 @@
   --font-body: "Switzer", "Inter", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
 
+  /* Fluid display type scale — one system for every headline across
+     the site so future sections never invent their own sizes. */
+  --text-display-xl: clamp(2.75rem, 5vw + 1rem, 5.5rem);
+  --text-display-lg: clamp(2.25rem, 3.5vw + 1rem, 4rem);
+  --text-display-md: clamp(1.75rem, 2vw + 1rem, 2.5rem);
+  --text-display-sm: clamp(1.25rem, 1vw + 1rem, 1.75rem);
+
   --animate-blob-a: blob-a 22s ease-in-out infinite;
   --animate-blob-b: blob-b 26s ease-in-out infinite;
   --animate-blob-c: blob-c 30s ease-in-out infinite;
@@ -103,6 +110,20 @@
     -webkit-backdrop-filter: blur(16px);
   }
 
+  /* Vertical rhythm system — every top-level section uses this so
+     spacing between Hero/About/Projects/etc. stays consistent instead
+     of each section picking its own padding. */
+  .section-py {
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  @media (min-width: 768px) {
+    .section-py {
+      padding-top: 9rem;
+      padding-bottom: 9rem;
+    }
+  }
+
   /* Gradient text spanning the three accent colors */
   .text-gradient-accent {
     background: linear-gradient(
@@ -127,4 +148,3 @@
     }
   }
 }
-

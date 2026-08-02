@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Premium React Portfolio
 
 A cinematic, dark-themed portfolio built in phases.
@@ -36,41 +35,36 @@ src/
   components/
     effects/   -> GridBackground, GradientBlobs (ambient background system)
     ui/        -> Button, Container (generic reusable primitives)
-    layout/    -> Reveal (scroll-entrance wrapper), future Navbar/Footer
+    layout/    -> Navbar, Footer, Section, Reveal (structural + entrance-animation primitives)
+  layouts/     -> MainLayout (Navbar + routed content + Footer, mounted once)
+  pages/       -> Home (placeholder anchors), NotFound (route composition)
   sections/    -> Hero, About, Skills, Projects, Timeline, Contact (added phase by phase)
+  data/        -> navLinks.js, socialLinks.js (content lists, not layout)
+  constants/   -> site.js (SITE_NAME, NAVBAR_HEIGHT, etc.)
+  animations/  -> variants.js (shared Framer Motion variants)
   hooks/       -> useLenis, future custom hooks
   lib/         -> cn.js (class name utility)
 ```
 
 ## Build phases
 
-- [x] **Phase 0 — Foundation**: Tailwind v4 theme, folder structure, ambient
-      background system (cursor-reactive grid + animated gradient blobs),
-      smooth scroll, base UI primitives (Button, Container, Reveal), routing
-      and toast provider wired up.
-- [ ] Phase 1 — Navbar + Hero
-- [ ] Phase 2 — About Me
-- [ ] Phase 3 — Skills
-- [ ] Phase 4 — Tech Stack
-- [ ] Phase 5 — Projects
-- [ ] Phase 6 — Experience / Education Timeline
-- [ ] Phase 7 — Contact
-- [ ] Phase 8 — Footer + final polish pass
-=======
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
->>>>>>> 92967a48d10f83cfcb6df8a2c02e58f3c89c54bc
+- [x] **Phase 0 — Foundation (visual system)**: Tailwind v4 theme, folder
+      structure, ambient background system (cursor-reactive grid + animated
+      gradient blobs), smooth scroll, base UI primitives (Button, Container,
+      Reveal), routing and toast provider wired up.
+- [x] **Phase 1 — Foundation (structure/navigation)**: full folder set
+      (`pages`, `data`, `layouts`, `animations`, etc.), responsive Navbar
+      (Home/About/Projects/Contact, glass-on-scroll, mobile menu), Footer
+      (nav links, socials, back-to-top), `MainLayout` composing them with
+      React Router, anchor-aware smooth scrolling, typography scale and
+      section spacing system, reusable `Section` wrapper. No Hero/About/
+      Projects/Contact content yet — `Home.jsx` only holds placeholder
+      anchor targets.
+- [ ] Phase 2 — Hero
+- [ ] Phase 3 — About Me
+- [ ] Phase 4 — Skills
+- [ ] Phase 5 — Tech Stack
+- [ ] Phase 6 — Projects
+- [ ] Phase 7 — Experience / Education Timeline
+- [ ] Phase 8 — Contact
+- [ ] Phase 9 — Final polish pass

@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { motion } from 'framer-motion'
 import { cn } from '../../lib/cn'
 
@@ -22,7 +23,14 @@ export default function Button({
   children,
   ...props
 }) {
-  const Tag = motion[as] ?? motion.button
+  // Plain tag names ('button', 'a') use motion's built-in elements.
+  // A custom component (e.g. React Router's <Link>) is wrapped with
+  // motion.create so it still gets whileHover/whileTap, memoized so it
+  // isn't recreated on every render.
+  const Tag = useMemo(
+    () => (typeof as === 'string' ? motion[as] ?? motion.button : motion.create(as)),
+    [as]
+  )
 
   return (
     <Tag
