@@ -57,8 +57,20 @@ export default function ProjectModal({ project, onClose }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.25 }}
           onClick={onClose}
-          className="fixed inset-0 z-[100] flex items-start justify-center overflow-y-auto bg-bg/80 p-4 backdrop-blur-sm md:items-center md:p-8"
+          className="fixed inset-0 z-[100] flex justify-center overflow-y-auto bg-bg/80 p-4 backdrop-blur-sm md:p-8"
         >
+          {/*
+            `my-auto` centers vertically without `items-center` on the
+            parent — align-items:center clips the top of anything
+            taller than the viewport instead of letting you scroll to
+            it, a well-known flexbox+overflow bug. `my-auto` avoids it:
+            it centers when there's room and degrades to normal
+            top-anchored scrolling when there isn't.
+            `max-h-[85vh]` + `flex-col` on this panel, with the content
+            block below set to `flex-1 overflow-y-auto`, keeps the
+            whole dialog within the viewport — the image stays fully
+            visible and only the text area scrolls if needed.
+          */}
           <motion.div
             role="dialog"
             aria-modal="true"
@@ -68,7 +80,7 @@ export default function ProjectModal({ project, onClose }) {
             animate="visible"
             exit="hidden"
             onClick={(event) => event.stopPropagation()}
-            className="glass relative my-8 w-full max-w-2xl overflow-hidden rounded-3xl md:my-0"
+            className="glass relative my-auto flex max-h-[85vh] w-full max-w-2xl flex-col overflow-hidden rounded-3xl"
           >
             <button
               type="button"
@@ -79,11 +91,11 @@ export default function ProjectModal({ project, onClose }) {
               <FiX size={18} />
             </button>
 
-            <div className="aspect-[16/9] w-full">
+            <div className="aspect-[16/9] w-full shrink-0">
               <ProjectImage src={project?.image} title={project?.title ?? ''} />
             </div>
 
-            <div className="max-h-[65vh] overflow-y-auto p-6 md:p-8">
+            <div className="flex-1 overflow-y-auto p-6 md:p-8">
               <h3 className="font-display text-2xl font-medium text-ink">{project?.title}</h3>
               <p className="mt-2 text-sm text-ink-muted">{project?.description}</p>
 
