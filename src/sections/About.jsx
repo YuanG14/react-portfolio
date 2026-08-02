@@ -1,0 +1,64 @@
+import Section from '../components/layout/Section'
+import Reveal from '../components/layout/Reveal'
+import StatCard from '../components/about/StatCard'
+import AboutVisual from '../components/about/AboutVisual'
+import { ABOUT_PARAGRAPHS, ABOUT_HIGHLIGHTS, ABOUT_STATS } from '../data/about'
+
+/**
+ * About Me section. Uses the standard <Section> wrapper for anchor id
+ * + vertical rhythm + shared container width — same pattern every
+ * top-level section should follow (see Section.jsx docstring).
+ */
+export default function About() {
+  return (
+    <Section id="about">
+      <Reveal>
+        <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink-faint">About Me</p>
+        <h2 className="mt-4 text-display-lg font-display font-medium text-ink">
+          Get to know <span className="text-gradient-accent">me</span>
+        </h2>
+      </Reveal>
+
+      <div className="mt-12 grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
+        {/* Text column */}
+        <div>
+          {ABOUT_PARAGRAPHS.map((paragraph, index) => (
+            <Reveal key={paragraph.slice(0, 24)} delay={0.1 + index * 0.1}>
+              <p className="mt-4 max-w-xl text-ink-muted first:mt-0">{paragraph}</p>
+            </Reveal>
+          ))}
+
+          <div className="mt-10 grid gap-5 sm:grid-cols-2">
+            {ABOUT_HIGHLIGHTS.map(({ icon: Icon, title, description }, index) => (
+              <Reveal key={title} delay={0.2 + index * 0.08}>
+                <div className="flex gap-3">
+                  <div className="glass flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-cyan">
+                    <Icon aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-ink">{title}</p>
+                    <p className="mt-1 text-sm text-ink-muted">{description}</p>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+
+        {/* Visual column */}
+        <Reveal delay={0.15}>
+          <AboutVisual />
+        </Reveal>
+      </div>
+
+      {/* Stat row */}
+      <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
+        {ABOUT_STATS.map((stat, index) => (
+          <Reveal key={stat.label} delay={0.1 + index * 0.08}>
+            <StatCard icon={stat.icon} value={stat.value} label={stat.label} />
+          </Reveal>
+        ))}
+      </div>
+    </Section>
+  )
+}
