@@ -21,6 +21,6 @@ export const contactSchema = z.object({
   message: z
     .string()
     .trim()
-    .min(10, 'Message should be at least 10 characters')
+    .min(20, 'Message should be at least 20 characters')
     .max(2000, 'Keep it under 2000 characters'),
 })

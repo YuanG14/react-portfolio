@@ -3,6 +3,7 @@ import GridBackground from '../components/effects/GridBackground'
 import GradientBlobs from '../components/effects/GradientBlobs'
 import Navbar from '../components/layout/Navbar'
 import Footer from '../components/layout/Footer'
+import ScrollToTopButton from '../components/layout/ScrollToTopButton'
 
 /**
  * Shared shell rendered around every route: ambient background layers
@@ -23,6 +24,8 @@ export default function MainLayout() {
         </main>
         <Footer />
       </div>
+
+      <ScrollToTopButton />
     </div>
   )
 }

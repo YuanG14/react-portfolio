@@ -1,4 +1,3 @@
-import { FiArrowUp } from 'react-icons/fi'
 import { NAV_LINKS } from '../../data/navLinks'
 import { SOCIAL_LINKS } from '../../data/socialLinks'
 import { SITE_NAME, SITE_TAGLINE } from '../../constants/site'
@@ -6,15 +5,12 @@ import Container from '../ui/Container'
 
 /**
  * Closes out the page. Reads from the same NAV_LINKS as the Navbar so
- * the two never fall out of sync, and calls the shared Lenis instance
- * directly for "back to top" (see src/hooks/useLenis.js).
+ * the two never fall out of sync. (Back-to-top now lives in the
+ * floating ScrollToTopButton, rendered globally in MainLayout, rather
+ * than as a link here.)
  */
 export default function Footer() {
   const year = new Date().getFullYear()
-
-  const scrollToTop = () => {
-    window.__lenis?.scrollTo(0)
-  }
 
   return (
     <footer className="relative border-t border-border">
@@ -56,14 +52,6 @@ export default function Footer() {
         <p>
           © {year} {SITE_NAME}. All rights reserved.
         </p>
-        <button
-          type="button"
-          onClick={scrollToTop}
-          className="flex items-center gap-2 text-ink-faint transition-colors hover:text-ink"
-        >
-          Back to top
-          <FiArrowUp size={14} />
-        </button>
       </Container>
     </footer>
   )

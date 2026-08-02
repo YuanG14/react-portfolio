@@ -6,7 +6,8 @@ import { FiSend, FiLoader } from 'react-icons/fi'
 import Section from '../components/layout/Section'
 import Reveal from '../components/layout/Reveal'
 import Button from '../components/ui/Button'
-import FormField from '../components/contact/FormField'
+import Input from '../components/ui/Input'
+import TextArea from '../components/ui/TextArea'
 import ContactInfoItem from '../components/contact/ContactInfoItem'
 import { contactSchema } from '../components/contact/schema'
 import { CONTACT_INFO } from '../data/contact'
@@ -23,10 +24,11 @@ async function submitContactForm(values) {
 }
 
 /**
- * Contact section (Phase 7) — replaces the temporary anchor
- * placeholder in Home.jsx. Validation mirrors the same
- * react-hook-form + zod pairing used across the stack; layout follows
- * the two-column, Section/Reveal pattern established by About.
+ * Contact section (Phase 7). Validation is react-hook-form + zod
+ * (see components/contact/schema.js): each field shows its own
+ * inline error, and `onInvalid` additionally surfaces one targeted
+ * toast for the most relevant problem, so the person gets feedback
+ * even if they don't scroll down to read every field.
  */
 export default function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -35,6 +37,7 @@ export default function Contact() {
     register,
     handleSubmit,
     reset,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: zodResolver(contactSchema),
@@ -45,12 +48,34 @@ export default function Contact() {
     setIsSubmitting(true)
     try {
       await submitContactForm(values)
-      toast.success("Message sent — I'll get back to you soon.")
+      toast.success('✅ Message sent successfully.')
       reset()
     } catch {
       toast.error('Something went wrong. Please try again.')
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  /**
+   * Fires alongside the per-field inline errors whenever validation
+   * fails. Checked in order of what's most likely wrong: a field
+   * left completely empty first, then an invalid email, then a
+   * message that's present but too short.
+   */
+  function onInvalid(formErrors) {
+    const values = getValues()
+    const hasEmptyRequired =
+      !values.name?.trim() || !values.email?.trim() || !values.subject?.trim() || !values.message?.trim()
+
+    if (hasEmptyRequired) {
+      toast.error('❌ Please fill out all required fields.')
+    } else if (formErrors.email) {
+      toast.error('❌ Please enter a valid email address.')
+    } else if (formErrors.message) {
+      toast.error('❌ Message must contain at least 20 characters.')
+    } else {
+      toast.error('❌ Please check the form and try again.')
     }
   }
 
@@ -82,17 +107,17 @@ export default function Contact() {
         <Reveal delay={0.15}>
           <form
             noValidate
-            onSubmit={handleSubmit(onSubmit)}
+            onSubmit={handleSubmit(onSubmit, onInvalid)}
             className="glass grid gap-5 rounded-3xl p-6 sm:grid-cols-2 md:p-8"
           >
-            <FormField
+            <Input
               id="name"
               label="Name"
               placeholder="Jane Doe"
               error={errors.name?.message}
               {...register('name')}
             />
-            <FormField
+            <Input
               id="email"
               label="Email"
               type="email"
@@ -100,7 +125,7 @@ export default function Contact() {
               error={errors.email?.message}
               {...register('email')}
             />
-            <FormField
+            <Input
               id="subject"
               label="Subject"
               placeholder="Project inquiry"
@@ -108,14 +133,12 @@ export default function Contact() {
               error={errors.subject?.message}
               {...register('subject')}
             />
-            <FormField
-              as="textarea"
+            <TextArea
               id="message"
               label="Message"
               rows={5}
-              placeholder="Tell me a bit about what you're looking for..."
+              placeholder="Tell me a bit about what you're looking for (at least 20 characters)..."
               className="sm:col-span-2"
-              inputClassName="resize-none"
               error={errors.message?.message}
               {...register('message')}
             />
@@ -124,6 +147,7 @@ export default function Contact() {
               type="submit"
               variant="primary"
               disabled={isSubmitting}
+              aria-busy={isSubmitting}
               className="w-full sm:col-span-2 sm:w-fit disabled:cursor-not-allowed disabled:opacity-60"
             >
               {isSubmitting ? (
