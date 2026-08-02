@@ -14,8 +14,9 @@ import SkipToContent from '../components/layout/SkipToContent'
  *
  * Layering (back to front): GradientBlobs/GridBackground (z-0) ->
  * NoiseOverlay (z-1) -> routed content (z-10) -> Navbar/back-to-top
- * (z-50) -> ScrollProgressBar (z-60) -> CustomCursor (z-90) ->
- * SkipToContent, visible only on focus (z-100).
+ * (z-50) -> ScrollProgressBar (z-60) -> ProjectModal/SkipToContent
+ * (z-100) -> CustomCursor (z-150, so it's never hidden behind a modal)
+ * -> LoadingScreen (z-200).
  *
  * Individual pages only need to render their own sections —
  * everything structural (chrome, ambient effects, a11y helpers)
