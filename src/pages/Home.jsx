@@ -1,12 +1,13 @@
 import Section from '../components/layout/Section'
 import Reveal from '../components/layout/Reveal'
+import Hero from '../sections/Hero'
 
 /**
- * TEMPORARY. This page exists only so the Navbar/Footer anchors have
- * somewhere to scroll to and the foundation can be verified end to
- * end. Each placeholder below is replaced by its real section in a
- * later phase: Hero -> Phase 2, About -> Phase 3, Projects -> Phase 5,
- * Contact -> Phase 7. Do not add real content here yet.
+ * About/Projects/Contact are still TEMPORARY placeholders — anchor
+ * targets only, so Navbar/Footer links have somewhere to scroll to.
+ * Each is replaced by its real section in a later phase:
+ * About -> Phase 3, Projects -> Phase 5, Contact -> Phase 7.
+ * Hero (Phase 2) is now real — see src/sections/Hero.jsx.
  */
 function Placeholder({ id, phaseLabel, title }) {
   return (
@@ -29,7 +30,7 @@ function Placeholder({ id, phaseLabel, title }) {
 export default function Home() {
   return (
     <>
-      <Placeholder id="home" phaseLabel="Phase 2" title="Hero section" />
+      <Hero />
       <Placeholder id="about" phaseLabel="Phase 3" title="About section" />
       <Placeholder id="projects" phaseLabel="Phase 5" title="Projects section" />
       <Placeholder id="contact" phaseLabel="Phase 7" title="Contact section" />

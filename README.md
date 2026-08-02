@@ -60,7 +60,14 @@ src/
       section spacing system, reusable `Section` wrapper. No Hero/About/
       Projects/Contact content yet — `Home.jsx` only holds placeholder
       anchor targets.
-- [ ] Phase 2 — Hero
+- [x] **Phase 2 — Hero**: full-viewport intro with animated entrance
+      (staggered `Reveal`s), rotating job-title typing effect
+      (`useTypewriter` + `TypingText`), a cursor-following glow scoped to
+      the Hero (`components/hero/MouseGlow.jsx`), a floating glassmorphism
+      profile card with two independently-floating badge chips
+      (`components/hero/ProfileCard.jsx`), and a bouncing scroll cue. All
+      looping animation respects `prefers-reduced-motion`. Only the Hero
+      was built — About/Projects/Contact remain placeholders.
 - [ ] Phase 3 — About Me
 - [ ] Phase 4 — Skills
 - [ ] Phase 5 — Tech Stack
