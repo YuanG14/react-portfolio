@@ -5,6 +5,8 @@
  * '#' hrefs; swap in real URLs when available.
  */
 import skillmatchLogo from '../assets/skillmatch-logo.png'
+import datalensLogo from '../assets/datalens-logo.png'
+import libalertLogo from '../assets/libalert-logo.png'
 
 export const PROJECTS = [
   {
@@ -49,7 +51,7 @@ export const PROJECTS = [
     title: 'DataLens',
     description:
       'A schema-aware analytics platform that turns an uploaded CSV — of almost any shape — into a working dashboard of charts, trends, and AI-generated insights.',
-    image: null,
+    image: datalensLogo,
     tech: ['React', 'TypeScript', 'Vite', 'Supabase'],
     highlights: [
       'Started as a mental-health analytics tool, generalized to any CSV schema',
@@ -85,7 +87,7 @@ export const PROJECTS = [
     title: 'LibAlert',
     description:
       'An IoT-based library noise monitoring system, built as an undergraduate thesis project to help keep quiet study spaces actually quiet.',
-    image: null,
+    image: libalertLogo,
     tech: ['IoT', 'Embedded Systems'],
     highlights: [
       'Real-time noise monitoring across library zones',
