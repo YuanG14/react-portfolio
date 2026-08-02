@@ -4,13 +4,15 @@
  * whenever one's ready. `links.github`/`links.demo` are placeholder
  * '#' hrefs; swap in real URLs when available.
  */
+import skillmatchLogo from '../assets/skillmatch-logo.png'
+
 export const PROJECTS = [
   {
     id: 'skillmatch',
     title: 'SkillMatch',
     description:
       'A full-stack platform matching students to internships based on skills, education, experience, and career goals — built across role-based Student/Company/Admin dashboards.',
-    image: null,
+    image: skillmatchLogo,
     tech: ['React', 'TypeScript', 'Tailwind CSS', 'Supabase'],
     highlights: [
       'Role-based dashboards for students, companies, and admins',
