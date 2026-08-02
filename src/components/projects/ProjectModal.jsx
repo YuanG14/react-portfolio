@@ -95,7 +95,11 @@ export default function ProjectModal({ project, onClose }) {
               <ProjectImage src={project?.image} title={project?.title ?? ''} />
             </div>
 
-            <div className="flex-1 overflow-y-auto p-6 md:p-8">
+            <div
+              className="flex-1 overflow-y-auto p-6 md:p-8"
+              onWheel={(event) => event.stopPropagation()}
+              onTouchMove={(event) => event.stopPropagation()}
+            >
               <h3 className="font-display text-2xl font-medium text-ink">{project?.title}</h3>
               <p className="mt-2 text-sm text-ink-muted">{project?.description}</p>
 
