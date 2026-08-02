@@ -1,4 +1,5 @@
 import Section from '../components/layout/Section'
+import SectionHeader from '../components/layout/SectionHeader'
 import Reveal from '../components/layout/Reveal'
 import SkillPill from '../components/skills/SkillPill'
 import { SKILL_CATEGORIES } from '../data/skills'
@@ -11,12 +12,7 @@ import { SKILL_CATEGORIES } from '../data/skills'
 export default function Skills() {
   return (
     <Section id="skills">
-      <Reveal>
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink-faint">Skills</p>
-        <h2 className="mt-4 text-display-lg font-display font-medium text-ink">
-          What I <span className="text-gradient-accent">work with</span>
-        </h2>
-      </Reveal>
+      <SectionHeader eyebrow="Skills" title="What I" accent="work with" />
 
       <div className="mt-12 space-y-10">
         {SKILL_CATEGORIES.map((category, index) => (

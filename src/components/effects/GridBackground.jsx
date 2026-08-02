@@ -28,7 +28,7 @@ export default function GridBackground() {
       })
     }
 
-    window.addEventListener('pointermove', handlePointerMove)
+    window.addEventListener('pointermove', handlePointerMove, { passive: true })
     return () => {
       window.removeEventListener('pointermove', handlePointerMove)
       if (frame) cancelAnimationFrame(frame)

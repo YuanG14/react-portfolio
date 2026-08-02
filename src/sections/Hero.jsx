@@ -1,9 +1,10 @@
 import { useRef } from 'react'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import { FiChevronDown } from 'react-icons/fi'
 import Container from '../components/ui/Container'
 import Reveal from '../components/layout/Reveal'
 import Button from '../components/ui/Button'
+import Magnetic from '../components/ui/Magnetic'
 import TypingText from '../components/ui/TypingText'
 import MouseGlow from '../components/hero/MouseGlow'
 import ProfileCard from '../components/hero/ProfileCard'
@@ -14,9 +15,17 @@ import { HERO_NAME, HERO_ROLES, HERO_TAGLINE } from '../data/hero'
  * wrapper (see components/layout/Section.jsx) — its `.section-py`
  * vertical rhythm is for content sections further down the page,
  * while the Hero needs to own the full screen height itself.
+ *
+ * The floating visual gets a subtle scroll-linked parallax (drifts
+ * down slightly slower than the page as you scroll past the Hero),
+ * layered on top of ProfileCard's own independent float loop.
  */
 export default function Hero() {
   const heroRef = useRef(null)
+  const shouldReduceMotion = useReducedMotion()
+
+  const { scrollYProgress } = useScroll({ target: heroRef, offset: ['start start', 'end start'] })
+  const profileY = useTransform(scrollYProgress, [0, 1], [0, shouldReduceMotion ? 0 : 90])
 
   return (
     <section
@@ -50,17 +59,23 @@ export default function Hero() {
           </Reveal>
 
           <Reveal delay={0.4} className="mt-10 flex flex-wrap gap-4">
-            <Button as="a" href="#projects" variant="primary">
-              View Projects
-            </Button>
-            <Button as="a" href="#contact" variant="secondary">
-              Contact Me
-            </Button>
+            <Magnetic>
+              <Button as="a" href="#projects" variant="primary">
+                View Projects
+              </Button>
+            </Magnetic>
+            <Magnetic>
+              <Button as="a" href="#contact" variant="secondary">
+                Contact Me
+              </Button>
+            </Magnetic>
           </Reveal>
         </div>
 
         {/* Floating visual column */}
-        <ProfileCard />
+        <motion.div style={{ y: profileY }}>
+          <ProfileCard />
+        </motion.div>
       </Container>
 
       {/* Scroll cue */}
@@ -68,7 +83,11 @@ export default function Hero() {
         href="#about"
         aria-label="Scroll to About section"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 1, y: [0, 8, 0] }}
+        animate={
+          shouldReduceMotion
+            ? { opacity: 1 }
+            : { opacity: 1, y: [0, 8, 0] }
+        }
         transition={{
           opacity: { duration: 0.8, delay: 1.2 },
           y: { duration: 1.8, repeat: Infinity, ease: 'easeInOut', delay: 1.2 },

@@ -4,8 +4,10 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { toast } from 'sonner'
 import { FiSend, FiLoader } from 'react-icons/fi'
 import Section from '../components/layout/Section'
+import SectionHeader from '../components/layout/SectionHeader'
 import Reveal from '../components/layout/Reveal'
 import Button from '../components/ui/Button'
+import Magnetic from '../components/ui/Magnetic'
 import Input from '../components/ui/Input'
 import TextArea from '../components/ui/TextArea'
 import ContactInfoItem from '../components/contact/ContactInfoItem'
@@ -81,12 +83,7 @@ export default function Contact() {
 
   return (
     <Section id="contact">
-      <Reveal>
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink-faint">Contact</p>
-        <h2 className="mt-4 text-display-lg font-display font-medium text-ink">
-          Let&apos;s build something <span className="text-gradient-accent">great</span>
-        </h2>
-      </Reveal>
+      <SectionHeader eyebrow="Contact" title="Let's build something" accent="great" />
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
         {/* Info column */}
@@ -143,25 +140,27 @@ export default function Contact() {
               {...register('message')}
             />
 
-            <Button
-              type="submit"
-              variant="primary"
-              disabled={isSubmitting}
-              aria-busy={isSubmitting}
-              className="w-full sm:col-span-2 sm:w-fit disabled:cursor-not-allowed disabled:opacity-60"
-            >
-              {isSubmitting ? (
-                <>
-                  <FiLoader className="animate-spin" aria-hidden="true" />
-                  Sending...
-                </>
-              ) : (
-                <>
-                  Send message
-                  <FiSend aria-hidden="true" />
-                </>
-              )}
-            </Button>
+            <Magnetic className="sm:col-span-2">
+              <Button
+                type="submit"
+                variant="primary"
+                disabled={isSubmitting}
+                aria-busy={isSubmitting}
+                className="w-full sm:w-fit disabled:cursor-not-allowed disabled:opacity-60"
+              >
+                {isSubmitting ? (
+                  <>
+                    <FiLoader className="animate-spin" aria-hidden="true" />
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    Send message
+                    <FiSend aria-hidden="true" />
+                  </>
+                )}
+              </Button>
+            </Magnetic>
           </form>
         </Reveal>
       </div>

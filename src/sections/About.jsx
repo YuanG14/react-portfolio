@@ -1,4 +1,5 @@
 import Section from '../components/layout/Section'
+import SectionHeader from '../components/layout/SectionHeader'
 import Reveal from '../components/layout/Reveal'
 import StatCard from '../components/about/StatCard'
 import AboutVisual from '../components/about/AboutVisual'
@@ -12,12 +13,7 @@ import { ABOUT_PARAGRAPHS, ABOUT_HIGHLIGHTS, ABOUT_STATS } from '../data/about'
 export default function About() {
   return (
     <Section id="about">
-      <Reveal>
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink-faint">About Me</p>
-        <h2 className="mt-4 text-display-lg font-display font-medium text-ink">
-          Get to know <span className="text-gradient-accent">me</span>
-        </h2>
-      </Reveal>
+      <SectionHeader eyebrow="About Me" title="Get to know" accent="me" />
 
       <div className="mt-12 grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
         {/* Text column */}

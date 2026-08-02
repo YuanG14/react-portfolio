@@ -30,7 +30,7 @@ export default function MouseGlow({ containerRef }) {
       mouseY.set(event.clientY - rect.top)
     }
 
-    window.addEventListener('pointermove', handlePointerMove)
+    window.addEventListener('pointermove', handlePointerMove, { passive: true })
     return () => window.removeEventListener('pointermove', handlePointerMove)
   }, [containerRef, mouseX, mouseY, shouldReduceMotion])
 

@@ -22,9 +22,14 @@ export function useTypewriter(
       // Full word typed — hold, then start deleting.
       timeout = setTimeout(() => setIsDeleting(true), pauseTime)
     } else if (isDeleting && text === '') {
-      // Fully deleted — advance to the next word.
-      setIsDeleting(false)
-      setWordIndex((i) => (i + 1) % words.length)
+      // Fully deleted — advance to the next word. Deferred into a
+      // timeout (even a 0ms one) rather than called synchronously
+      // here, so state updates always happen from a callback, not
+      // directly in the effect body.
+      timeout = setTimeout(() => {
+        setIsDeleting(false)
+        setWordIndex((i) => (i + 1) % words.length)
+      }, 0)
     } else {
       timeout = setTimeout(
         () => {

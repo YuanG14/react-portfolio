@@ -21,6 +21,7 @@ export default function Experience() {
         title="My"
         accent="journey"
         description="A quick look at how I got here — one year, one skill, one project at a time."
+        showUnderline
       />
 
       <div ref={containerRef} className="relative mt-16 md:mt-20">

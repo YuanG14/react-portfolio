@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import Section from '../components/layout/Section'
+import SectionHeader from '../components/layout/SectionHeader'
 import Reveal from '../components/layout/Reveal'
 import ProjectCard from '../components/projects/ProjectCard'
 import ProjectModal from '../components/projects/ProjectModal'
@@ -16,12 +17,7 @@ export default function Projects() {
 
   return (
     <Section id="projects">
-      <Reveal>
-        <p className="font-mono text-xs uppercase tracking-[0.3em] text-ink-faint">Projects</p>
-        <h2 className="mt-4 text-display-lg font-display font-medium text-ink">
-          Things I&apos;ve <span className="text-gradient-accent">built</span>
-        </h2>
-      </Reveal>
+      <SectionHeader eyebrow="Projects" title="Things I've" accent="built" />
 
       <div className="mt-12 grid gap-8 md:grid-cols-2">
         {PROJECTS.map((project, index) => (

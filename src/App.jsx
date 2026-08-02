@@ -3,25 +3,26 @@ import { useLenis } from './hooks/useLenis'
 import MainLayout from './layouts/MainLayout'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
+import LoadingScreen from './components/effects/LoadingScreen'
 
 /**
- * Phase 1 — Foundation: routing + layout.
- *
- * MainLayout renders the background system, Navbar, and Footer once;
- * individual pages only supply their own content via <Outlet />.
- * Home is still a placeholder (see src/pages/Home.jsx) — Hero, About,
- * Projects, and Contact are built section-by-section in later phases.
+ * LoadingScreen is rendered above the router so it covers the very
+ * first paint on any route, then fades out once (see
+ * src/components/effects/LoadingScreen.jsx).
  */
 function App() {
   useLenis()
 
   return (
-    <Routes>
-      <Route element={<MainLayout />}>
-        <Route index element={<Home />} />
-        <Route path="*" element={<NotFound />} />
-      </Route>
-    </Routes>
+    <>
+      <LoadingScreen />
+      <Routes>
+        <Route element={<MainLayout />}>
+          <Route index element={<Home />} />
+          <Route path="*" element={<NotFound />} />
+        </Route>
+      </Routes>
+    </>
   )
 }
 

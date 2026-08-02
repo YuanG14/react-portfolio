@@ -137,6 +137,15 @@
     color: transparent;
   }
 
+  /* Toggled on <html> by CustomCursor (see components/effects/CustomCursor.jsx)
+     only on fine-pointer devices with no reduced-motion preference — the
+     system cursor is only ever hidden once a replacement is actually
+     rendered and tracking the pointer. */
+  .custom-cursor-active,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     *,
     *::before,

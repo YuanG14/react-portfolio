@@ -13,6 +13,8 @@ export default function ProjectImage({ src, title, className }) {
       <img
         src={src}
         alt={`${title} preview`}
+        loading="lazy"
+        decoding="async"
         className={cn('h-full w-full object-cover', className)}
       />
     )

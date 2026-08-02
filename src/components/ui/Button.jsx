@@ -1,5 +1,5 @@
-import { useMemo } from 'react'
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 import { cn } from '../../lib/cn'
 
 const variants = {
@@ -9,6 +9,14 @@ const variants = {
     'glass text-ink hover:bg-surface-hover hover:border-border-strong',
   ghost: 'text-ink-muted hover:text-ink',
 }
+
+// Created once, unconditionally, at module load — never inside the
+// component body — so no path reachable from render creates a new
+// component. `Link` is the only non-string `as` value Button is
+// actually used with anywhere in the app (see pages/NotFound.jsx);
+// an `as` value outside these known cases renders unwrapped (no
+// whileHover/whileTap), rather than calling motion.create at runtime.
+const MotionLink = motion.create(Link)
 
 /**
  * The single button component for the whole site. Prefer this over
@@ -23,14 +31,10 @@ export default function Button({
   children,
   ...props
 }) {
-  // Plain tag names ('button', 'a') use motion's built-in elements.
-  // A custom component (e.g. React Router's <Link>) is wrapped with
-  // motion.create so it still gets whileHover/whileTap, memoized so it
-  // isn't recreated on every render.
-  const Tag = useMemo(
-    () => (typeof as === 'string' ? motion[as] ?? motion.button : motion.create(as)),
-    [as]
-  )
+  // Pure lookup — no function call, no component creation — so this
+  // resolves to one of the module-scope constants above at render
+  // time without ever constructing anything new.
+  const Tag = typeof as === 'string' ? motion[as] ?? motion.button : as === Link ? MotionLink : as
 
   return (
     <Tag
