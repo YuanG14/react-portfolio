@@ -4,15 +4,15 @@ import Hero from '../sections/Hero'
 import About from '../sections/About'
 import Skills from '../sections/Skills'
 import TechStack from '../sections/TechStack'
+import Projects from '../sections/Projects'
 
 /**
- * Projects/Contact are still TEMPORARY placeholders — anchor targets
- * only, so Navbar/Footer links have somewhere to scroll to. Each is
- * replaced by its real section in a later phase:
- * Projects -> Phase 5, Contact -> Phase 7.
- * Hero (Phase 2), About (Phase 3), and Skills/TechStack (Phase 4) are
- * now real — see src/sections/Hero.jsx, About.jsx, Skills.jsx, and
- * TechStack.jsx.
+ * Contact is still a TEMPORARY placeholder — anchor target only, so
+ * Navbar/Footer links have somewhere to scroll to; replaced in
+ * Phase 7. Hero (Phase 2), About (Phase 3), Skills/TechStack
+ * (Phase 4), and Projects (Phase 5) are now real — see
+ * src/sections/Hero.jsx, About.jsx, Skills.jsx, TechStack.jsx, and
+ * Projects.jsx.
  */
 function Placeholder({ id, phaseLabel, title }) {
   return (
@@ -39,7 +39,7 @@ export default function Home() {
       <About />
       <Skills />
       <TechStack />
-      <Placeholder id="projects" phaseLabel="Phase 5" title="Projects section" />
+      <Projects />
       <Placeholder id="contact" phaseLabel="Phase 7" title="Contact section" />
     </>
   )
