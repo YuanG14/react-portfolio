@@ -110,6 +110,21 @@
     -webkit-backdrop-filter: blur(16px);
   }
 
+  /* A more pronounced glass surface — stronger blur/border/shadow and a
+     soft inner highlight — for content that should read as elevated
+     above the standard .glass surface (currently: Skills technology
+     cards, the "Always Learning" card, and the skill stat tiles).
+     Built from the same tokens as .glass, just turned up. */
+  .glass-elevated {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+      inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+      0 20px 45px -20px rgba(0, 0, 0, 0.55);
+  }
+
   /* Vertical rhythm system — every top-level section uses this so
      spacing between Hero/About/Projects/etc. stays consistent instead
      of each section picking its own padding. */
