@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/* ------------------------------------------------------------------ */
+/* Design tokens — the single source of truth for the visual system.   */
+/* Every color/font used in components should trace back to one of     */
+/* these. See tailwind.config equivalent: Tailwind v4 reads this        */
+/* @theme block directly, generating utilities like bg-bg, text-purple, */
+/* font-display, etc.                                                   */
+/* ------------------------------------------------------------------ */
+@theme {
+  --color-bg: #09090b;
+  --color-surface: rgba(255, 255, 255, 0.035);
+  --color-surface-hover: rgba(255, 255, 255, 0.06);
+  --color-border: rgba(255, 255, 255, 0.09);
+  --color-border-strong: rgba(255, 255, 255, 0.16);
+
+  --color-ink: #fafafa;
+  --color-ink-muted: #a1a1aa;
+  --color-ink-faint: #71717a;
+
+  --color-purple: #8b5cf6;
+  --color-cyan: #22d3ee;
+  --color-blue: #3b82f6;
+
+  --font-display: "Clash Display", "General Sans", sans-serif;
+  --font-body: "Switzer", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+
+  --animate-blob-a: blob-a 22s ease-in-out infinite;
+  --animate-blob-b: blob-b 26s ease-in-out infinite;
+  --animate-blob-c: blob-c 30s ease-in-out infinite;
+
+  @keyframes blob-a {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(6%, -8%) scale(1.08); }
+    66% { transform: translate(-4%, 6%) scale(0.94); }
+  }
+  @keyframes blob-b {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    33% { transform: translate(-8%, 5%) scale(0.92); }
+    66% { transform: translate(5%, -6%) scale(1.1); }
+  }
+  @keyframes blob-c {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(4%, 8%) scale(1.06); }
+  }
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    background: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+  }
+
+  ::selection {
+    background: var(--color-purple);
+    color: var(--color-ink);
+  }
+
+  /* Slim, quiet scrollbar that fits the dark/glass aesthetic */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--color-bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-border-strong);
+    border-radius: 999px;
+    border: 2px solid var(--color-bg);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-cyan);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  /* Reusable glassmorphism surface */
+  .glass {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  /* Gradient text spanning the three accent colors */
+  .text-gradient-accent {
+    background: linear-gradient(
+      100deg,
+      var(--color-purple),
+      var(--color-blue) 55%,
+      var(--color-cyan)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
