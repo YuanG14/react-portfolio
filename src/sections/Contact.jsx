@@ -81,7 +81,7 @@ export default function Contact() {
   }
 
   return (
-    <Section id="contact">
+    <Section id="contact" className="section-bg-contact">
       <SectionHeader eyebrow="Contact" title="Let's build something" accent="great" />
 
       <div className="mt-12 grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">

@@ -1,10 +1,11 @@
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 
 /**
- * Three large, heavily-blurred color fields that drift slowly in the
- * background (pure CSS keyframes defined in index.css — no per-frame
- * JS cost for the drift itself). They sit behind the grid's spotlight
- * mask and give the dark canvas depth without competing with
+ * Three soft, heavily-blurred navy/ice-blue fields that drift slowly
+ * in the background (pure CSS keyframes defined in index.css — no
+ * per-frame JS cost for the drift itself). Kept low-opacity by design
+ * — quiet spotlights rather than visible blobs — so they sit behind
+ * the grid's spotlight mask and add depth without competing with
  * foreground content.
  *
  * Each blob also gets a subtle scroll-linked parallax: an outer
@@ -32,21 +33,21 @@ export default function GradientBlobs() {
     >
       <motion.div style={{ y: shouldReduceMotion ? 0 : yA }} className="absolute -left-40 top-[-10%]">
         <div
-          className="h-[520px] w-[520px] rounded-full opacity-30 blur-[70px] animate-blob-a sm:blur-[120px]"
+          className="h-[520px] w-[520px] rounded-full opacity-[0.14] blur-[90px] animate-blob-a sm:blur-[140px]"
           style={{ background: 'var(--color-purple)' }}
         />
       </motion.div>
 
       <motion.div style={{ y: shouldReduceMotion ? 0 : yB }} className="absolute right-[-15%] top-[10%]">
         <div
-          className="h-[480px] w-[480px] rounded-full opacity-25 blur-[70px] animate-blob-b sm:blur-[120px]"
+          className="h-[480px] w-[480px] rounded-full opacity-[0.11] blur-[90px] animate-blob-b sm:blur-[140px]"
           style={{ background: 'var(--color-blue)' }}
         />
       </motion.div>
 
       <motion.div style={{ y: shouldReduceMotion ? 0 : yC }} className="absolute bottom-[-15%] left-[20%]">
         <div
-          className="h-[560px] w-[560px] rounded-full opacity-20 blur-[80px] animate-blob-c sm:blur-[130px]"
+          className="h-[560px] w-[560px] rounded-full opacity-[0.09] blur-[100px] animate-blob-c sm:blur-[150px]"
           style={{ background: 'var(--color-cyan)' }}
         />
       </motion.div>

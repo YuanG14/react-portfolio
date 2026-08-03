@@ -6,21 +6,30 @@
 /* these. See tailwind.config equivalent: Tailwind v4 reads this        */
 /* @theme block directly, generating utilities like bg-bg, text-purple, */
 /* font-display, etc.                                                   */
+/*                                                                       */
+/* Palette: navy + ice blue, a single accent family instead of the      */
+/* previous purple/blue/cyan trio. The three accent token *names* are   */
+/* kept (purple/blue/cyan) so every component that already reaches for  */
+/* them — gradients, timeline category colors, hover glows — updates    */
+/* automatically; only the hex values underneath moved into one blue    */
+/* range: purple now sits deepest, cyan lightest, so the old three-stop */
+/* gradients read as a single tonal ramp rather than three hues.        */
 /* ------------------------------------------------------------------ */
 @theme {
-  --color-bg: #09090b;
-  --color-surface: rgba(255, 255, 255, 0.035);
-  --color-surface-hover: rgba(255, 255, 255, 0.06);
-  --color-border: rgba(255, 255, 255, 0.09);
-  --color-border-strong: rgba(255, 255, 255, 0.16);
+  --color-bg: #050816;
+  --color-bg-secondary: #0b1120;
+  --color-surface: rgba(17, 24, 39, 0.55);
+  --color-surface-hover: rgba(30, 41, 59, 0.65);
+  --color-border: rgba(148, 163, 184, 0.12);
+  --color-border-strong: rgba(148, 163, 184, 0.24);
 
-  --color-ink: #fafafa;
-  --color-ink-muted: #a1a1aa;
-  --color-ink-faint: #71717a;
+  --color-ink: #f8fafc;
+  --color-ink-muted: #cbd5e1;
+  --color-ink-faint: #94a3b8;
 
-  --color-purple: #8b5cf6;
-  --color-cyan: #22d3ee;
-  --color-blue: #3b82f6;
+  --color-purple: #2563eb;
+  --color-cyan: #93c5fd;
+  --color-blue: #60a5fa;
 
   --font-display: "Clash Display", "General Sans", sans-serif;
   --font-body: "Switzer", "Inter", sans-serif;
@@ -84,8 +93,8 @@
   }
 
   ::selection {
-    background: var(--color-purple);
-    color: var(--color-ink);
+    background: var(--color-blue);
+    color: var(--color-bg);
   }
 
   /* Slim, quiet scrollbar that fits the dark/glass aesthetic */
@@ -102,33 +111,37 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-cyan);
+    outline: 2px solid var(--color-blue);
     outline-offset: 3px;
   }
 }
 
 @layer utilities {
-  /* Reusable glassmorphism surface */
+  /* Reusable glassmorphism surface — kept intentionally light (low
+     opacity, modest blur) rather than heavy frosted glass, closer to
+     the restrained translucent cards of Linear/Vercel/Stripe than a
+     glassmorphism showcase. */
   .glass {
     background: var(--color-surface);
     border: 1px solid var(--color-border);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
 
-  /* A more pronounced glass surface — stronger blur/border/shadow and a
-     soft inner highlight — for content that should read as elevated
+  /* A more pronounced surface for content that should read as elevated
      above the standard .glass surface (currently: Skills technology
      cards, the "Always Learning" card, and the skill stat tiles).
-     Built from the same tokens as .glass, just turned up. */
+     Still translucent, just a touch stronger border/blur/shadow and a
+     soft inner highlight so hierarchy comes from contrast, not extra
+     glow. */
   .glass-elevated {
     background: var(--color-surface);
     border: 1px solid var(--color-border-strong);
-    backdrop-filter: blur(24px);
-    -webkit-backdrop-filter: blur(24px);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
     box-shadow:
-      inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
-      0 20px 45px -20px rgba(0, 0, 0, 0.55);
+      inset 0 1px 0 0 rgba(148, 163, 184, 0.08),
+      0 20px 45px -20px rgba(0, 0, 0, 0.6);
   }
 
   /* Vertical rhythm system — every top-level section uses this so
@@ -156,17 +169,52 @@
     animation: var(--animate-cursor-blink);
   }
 
-  /* Gradient text spanning the three accent colors */
+  /* Gradient text for a single accent word in a heading. A restrained
+     two-stop ramp within the same blue family (not a multi-hue
+     rainbow) so it reads as "one accent word", not a decoration. */
   .text-gradient-accent {
-    background: linear-gradient(
-      100deg,
-      var(--color-purple),
-      var(--color-blue) 55%,
-      var(--color-cyan)
-    );
+    background: linear-gradient(100deg, var(--color-blue), var(--color-cyan));
     background-clip: text;
     -webkit-background-clip: text;
     color: transparent;
+  }
+
+  /* ---------------------------------------------------------------- */
+  /* Section background treatments — each top-level section alternates */
+  /* between the primary and secondary navy, plus one soft, fixed      */
+  /* corner spotlight so the page reads as a sequence of quiet rooms   */
+  /* rather than one flat canvas, without introducing new components.  */
+  /* Apply via <Section className="section-bg-*">.                    */
+  /* ---------------------------------------------------------------- */
+  .section-bg-about {
+    background:
+      radial-gradient(760px circle at 8% 0%, rgba(96, 165, 250, 0.07), transparent 65%),
+      var(--color-bg-secondary);
+  }
+  .section-bg-skills {
+    background:
+      radial-gradient(700px circle at 100% 20%, rgba(147, 197, 253, 0.06), transparent 60%),
+      var(--color-bg);
+  }
+  .section-bg-tech-stack {
+    background:
+      radial-gradient(620px circle at 0% 100%, rgba(37, 99, 235, 0.1), transparent 60%),
+      var(--color-bg-secondary);
+  }
+  .section-bg-projects {
+    background:
+      radial-gradient(820px circle at 90% 0%, rgba(96, 165, 250, 0.07), transparent 65%),
+      var(--color-bg);
+  }
+  .section-bg-experience {
+    background:
+      radial-gradient(700px circle at 50% 100%, rgba(147, 197, 253, 0.05), transparent 60%),
+      var(--color-bg-secondary);
+  }
+  .section-bg-contact {
+    background:
+      radial-gradient(900px circle at 50% 0%, rgba(96, 165, 250, 0.08), transparent 65%),
+      var(--color-bg);
   }
 
   @media (prefers-reduced-motion: reduce) {

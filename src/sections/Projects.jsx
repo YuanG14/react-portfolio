@@ -16,7 +16,7 @@ export default function Projects() {
   const [activeProject, setActiveProject] = useState(null)
 
   return (
-    <Section id="projects">
+    <Section id="projects" className="section-bg-projects">
       <SectionHeader eyebrow="Projects" title="Things I've" accent="built" />
 
       <div className="mt-12 grid gap-8 md:grid-cols-2">

@@ -52,7 +52,7 @@ export default function TiltCard({ children, className, contentClassName }) {
         '--glow-y': glowY,
       }}
       className={cn(
-        'group relative rounded-3xl shadow-[0_20px_60px_-25px_rgba(0,0,0,0.6)] transition-shadow duration-500 hover:shadow-[0_35px_90px_-20px_rgba(139,92,246,0.35)]',
+        'group relative rounded-3xl shadow-[0_20px_60px_-25px_rgba(0,0,0,0.6)] transition-shadow duration-500 hover:shadow-[0_35px_90px_-20px_rgba(37,99,235,0.35)]',
         className
       )}
     >
@@ -62,7 +62,7 @@ export default function TiltCard({ children, className, contentClassName }) {
           className="pointer-events-none absolute -inset-6 rounded-3xl opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
           style={{
             background:
-              'radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(139,92,246,0.4), transparent 65%)',
+              'radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(37,99,235,0.4), transparent 65%)',
           }}
         />
       )}

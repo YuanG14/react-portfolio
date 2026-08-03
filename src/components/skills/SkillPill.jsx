@@ -17,8 +17,8 @@ export default function SkillPill({ label, className }) {
       transition={{ type: 'spring', stiffness: 350, damping: 20 }}
       className={cn(
         'glass inline-flex cursor-default items-center rounded-full px-4 py-2 text-sm text-ink-muted outline-none transition-[box-shadow,color,border-color] duration-300',
-        'hover:text-ink hover:border-border-strong hover:shadow-[0_0_24px_-4px_rgba(139,92,246,0.45)]',
-        'focus-visible:text-ink focus-visible:border-border-strong focus-visible:shadow-[0_0_24px_-4px_rgba(34,211,238,0.45)]',
+        'hover:text-ink hover:border-border-strong hover:shadow-[0_0_24px_-4px_rgba(37,99,235,0.45)]',
+        'focus-visible:text-ink focus-visible:border-border-strong focus-visible:shadow-[0_0_24px_-4px_rgba(147,197,253,0.45)]',
         className
       )}
     >

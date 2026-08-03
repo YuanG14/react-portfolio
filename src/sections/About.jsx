@@ -12,7 +12,7 @@ import { ABOUT_PARAGRAPHS, ABOUT_HIGHLIGHTS } from '../data/about'
  */
 export default function About() {
   return (
-    <Section id="about">
+    <Section id="about" className="section-bg-about">
       <SectionHeader eyebrow="About Me" title="Get to know" accent="me" />
 
       <div className="mt-12 grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">

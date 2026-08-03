@@ -31,7 +31,7 @@ export default function TechnologyCard({ icon: Icon, name, description, proficie
       whileFocus={{ y: -4, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ type: 'spring', stiffness: 320, damping: 24 }}
-      className="glass-elevated group flex cursor-default flex-col gap-3 rounded-2xl p-4 outline-none transition-shadow duration-300 hover:border-border-strong hover:shadow-[0_0_28px_-8px_rgba(139,92,246,0.45)] focus-visible:shadow-[0_0_28px_-8px_rgba(34,211,238,0.45)]"
+      className="glass-elevated group flex cursor-default flex-col gap-3 rounded-2xl p-4 outline-none transition-shadow duration-300 hover:border-border-strong hover:shadow-[0_0_28px_-8px_rgba(37,99,235,0.45)] focus-visible:shadow-[0_0_28px_-8px_rgba(147,197,253,0.45)]"
     >
       <div className="flex items-center gap-3">
         <Icon

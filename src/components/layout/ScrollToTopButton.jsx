@@ -41,7 +41,7 @@ export default function ScrollToTopButton() {
           whileHover={{ y: -4 }}
           whileTap={{ scale: 0.92 }}
           transition={{ type: 'spring', stiffness: 350, damping: 24 }}
-          className="glass fixed bottom-6 right-6 z-50 grid h-12 w-12 place-items-center rounded-full text-ink shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] transition-colors duration-300 hover:border-border-strong hover:text-cyan hover:shadow-[0_0_24px_-4px_rgba(34,211,238,0.45)] md:bottom-8 md:right-8"
+          className="glass fixed bottom-6 right-6 z-50 grid h-12 w-12 place-items-center rounded-full text-ink shadow-[0_10px_30px_-10px_rgba(0,0,0,0.6)] transition-colors duration-300 hover:border-border-strong hover:text-cyan hover:shadow-[0_0_24px_-4px_rgba(147,197,253,0.45)] md:bottom-8 md:right-8"
         >
           <FiArrowUp size={20} aria-hidden="true" />
         </motion.button>

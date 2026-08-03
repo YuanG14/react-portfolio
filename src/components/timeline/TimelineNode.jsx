@@ -10,9 +10,9 @@ import { cn } from '../../lib/cn'
  * @param {'purple'|'cyan'|'blue'} color
  */
 const NODE_COLORS = {
-  purple: { solid: 'var(--color-purple)', glow: 'rgba(139,92,246,0.55)' },
-  cyan: { solid: 'var(--color-cyan)', glow: 'rgba(34,211,238,0.55)' },
-  blue: { solid: 'var(--color-blue)', glow: 'rgba(59,130,246,0.55)' },
+  purple: { solid: 'var(--color-purple)', glow: 'rgba(37,99,235,0.55)' },
+  cyan: { solid: 'var(--color-cyan)', glow: 'rgba(147,197,253,0.55)' },
+  blue: { solid: 'var(--color-blue)', glow: 'rgba(96,165,250,0.55)' },
 }
 
 export default function TimelineNode({ icon: Icon, color = 'purple', className }) {

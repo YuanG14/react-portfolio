@@ -80,7 +80,7 @@ export default function BrandingCard() {
             className="pointer-events-none absolute -inset-6 rounded-[28px] opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
             style={{
               background:
-                'radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(139,92,246,0.35), transparent 65%)',
+                'radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(37,99,235,0.35), transparent 65%)',
             }}
           />
         )}

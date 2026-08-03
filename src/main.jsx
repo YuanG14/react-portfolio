@@ -14,9 +14,9 @@ createRoot(document.getElementById('root')).render(
         position="bottom-right"
         toastOptions={{
           style: {
-            background: '#18181b',
-            border: '1px solid rgba(255,255,255,0.09)',
-            color: '#fafafa',
+            background: '#0b1120',
+            border: '1px solid rgba(148,163,184,0.14)',
+            color: '#f8fafc',
           },
         }}
       />

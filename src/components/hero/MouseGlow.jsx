@@ -46,7 +46,7 @@ export default function MouseGlow({ containerRef }) {
           translateX: '-50%',
           translateY: '-50%',
           background:
-            'radial-gradient(circle, rgba(139,92,246,0.35), rgba(59,130,246,0.18) 45%, transparent 75%)',
+            'radial-gradient(circle, rgba(37,99,235,0.35), rgba(96,165,250,0.18) 45%, transparent 75%)',
         }}
       />
     </div>

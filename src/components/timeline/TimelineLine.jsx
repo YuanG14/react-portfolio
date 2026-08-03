@@ -42,7 +42,7 @@ export default function TimelineLine({ containerRef, className }) {
       {/* Scroll-driven progress fill */}
       <motion.div
         style={{ scaleY: scrollYProgress, transformOrigin: 'top' }}
-        className="absolute inset-0 bg-gradient-to-b from-purple via-blue to-cyan shadow-[0_0_16px_rgba(139,92,246,0.45)]"
+        className="absolute inset-0 bg-gradient-to-b from-purple via-blue to-cyan shadow-[0_0_16px_rgba(37,99,235,0.45)]"
       />
     </div>
   )

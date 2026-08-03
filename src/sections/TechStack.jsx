@@ -11,8 +11,8 @@ import { TECH_STACK } from '../data/techStack'
  */
 export default function TechStack() {
   return (
-    <Section id="tech-stack">
-      <SectionHeader eyebrow="Tech Stack" title="Tools I" accent="reach for" />
+    <Section id="tech-stack" className="section-bg-tech-stack">
+      <SectionHeader eyebrow="Tech Stack" title="Tools I" accent="use" />
 
       <div className="mt-12 grid grid-cols-2 gap-5 sm:grid-cols-3 md:grid-cols-5">
         {TECH_STACK.map((tech, index) => (

@@ -19,11 +19,11 @@ import { SKILLS_INTRO, SKILL_CATEGORIES } from '../data/skills'
  */
 export default function Skills() {
   return (
-    <Section id="skills">
+    <Section id="skills" className="section-bg-skills">
       <SkillsDecor />
 
       <div className="relative z-10">
-        <SectionHeader eyebrow="Skills" title="What I" accent="work with" />
+        <SectionHeader eyebrow="Skills" title="What I" accent="know" />
 
         <Reveal delay={0.05}>
           <p className="mt-5 max-w-2xl text-ink-muted">{SKILLS_INTRO}</p>

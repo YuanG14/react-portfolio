@@ -15,7 +15,7 @@ export default function Experience() {
   const containerRef = useRef(null)
 
   return (
-    <Section id="experience">
+    <Section id="experience" className="section-bg-experience">
       <SectionHeader
         eyebrow="Experience"
         title="My"

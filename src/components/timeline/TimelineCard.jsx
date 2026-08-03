@@ -29,7 +29,7 @@ export default function TimelineCard({
       whileHover={{ y: -6 }}
       transition={{ type: 'spring', stiffness: 300, damping: 24 }}
       className={cn(
-        'glass group relative rounded-3xl p-6 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.6)] transition-[box-shadow,border-color] duration-500 hover:border-border-strong hover:shadow-[0_30px_80px_-20px_rgba(139,92,246,0.3)] md:p-7',
+        'glass group relative rounded-3xl p-6 shadow-[0_20px_60px_-30px_rgba(0,0,0,0.6)] transition-[box-shadow,border-color] duration-500 hover:border-border-strong hover:shadow-[0_30px_80px_-20px_rgba(37,99,235,0.3)] md:p-7',
         align === 'right' && 'md:text-right',
         className
       )}
