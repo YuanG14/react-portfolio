@@ -9,12 +9,12 @@ import { TECH_STACK } from './techStack'
 /** Role tags shown under the name. Deliberately distinct copy from
  * HERO_ROLES (data/hero.js) — that array drives Hero's typing effect,
  * this one is a static hierarchy for the identity card. */
-export const BRANDING_ROLES = ['Full Stack Developer', 'UI/UX Designer', 'Modern Web Applications']
+export const BRANDING_ROLES = ['CS Student', 'Full-Stack Developer', 'Modern Web Applications']
 
-export const BRANDING_AVAILABILITY = 'Open to Opportunities'
+export const BRANDING_AVAILABILITY = 'Open to Internships'
 
 export const BRANDING_STATEMENT =
-  'Crafting scalable digital experiences with clean code and thoughtful design.'
+  'Learning by building — full-stack projects with clean code and thoughtful design.'
 
 export const CURRENTLY_BUILDING = ['SkillMatch', 'SmartPark', 'Portfolio Website']
 

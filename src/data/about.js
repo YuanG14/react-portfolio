@@ -1,12 +1,13 @@
-import { FiCode, FiLayout, FiZap, FiUsers, FiBriefcase, FiFolder, FiCoffee } from 'react-icons/fi'
+import { FiCode, FiLayout, FiZap, FiUsers, FiCalendar, FiFolder, FiCoffee } from 'react-icons/fi'
+import { PROJECTS } from './projects'
 
 /**
  * About section copy. Placeholder bio/numbers — swap for real content
  * whenever it's finalized, same pattern as src/data/hero.js.
  */
 export const ABOUT_PARAGRAPHS = [
-  "I'm a full-stack developer and UI/UX designer who enjoys turning ambiguous ideas into interfaces that feel obvious in hindsight. My focus sits at the intersection of clean engineering and considered design — not just work, but craft.",
-  'I care about the details most people skip past: motion that feels intentional, spacing that breathes, code that reads like it was written for the next person. Whether the project is a product, a prototype, or a personal experiment, I bring the same level of attention to it.',
+  "I'm a Computer Science student who enjoys turning ambiguous ideas into interfaces that feel obvious in hindsight. Most of what I know comes from building real, full-stack projects outside of coursework — not just following tutorials.",
+  'I care about the details most people skip past: motion that feels intentional, spacing that breathes, code that reads like it was written for the next person. Whether the project is a class assignment, a team build, or a personal experiment, I bring the same level of attention to it.',
 ]
 
 /**
@@ -25,22 +26,25 @@ export const ABOUT_HIGHLIGHTS = [
   },
   {
     icon: FiZap,
-    title: 'Performance-Minded',
-    description: 'Fast, accessible experiences that hold up under real use.',
+    title: 'Fast Learner',
+    description: 'Picks up new stacks and tools quickly, then builds with them right away.',
   },
   {
     icon: FiUsers,
     title: 'Collaborative',
-    description: 'Works well across design, product, and engineering.',
+    description: 'Works well with teammates across design, code, and review.',
   },
 ]
 
 /**
  * Headline stats shown in the row beneath the bio/visual columns.
+ * `Projects Built` counts PROJECTS directly so this never overstates
+ * what's actually shown on the site.
  */
 export const ABOUT_STATS = [
-  { icon: FiBriefcase, value: '3+', label: 'Years Experience' },
-  { icon: FiFolder, value: '20+', label: 'Projects Completed' },
+  { icon: FiCalendar, value: '3+', label: 'Years Coding' },
+  { icon: FiFolder, value: `${PROJECTS.length}`, label: 'Projects Built' },
   { icon: FiCode, value: '10+', label: 'Technologies' },
   { icon: FiCoffee, value: '∞', label: 'Cups of Coffee' },
 ]
+

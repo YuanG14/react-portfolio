@@ -1,9 +1,9 @@
 import Section from '../components/layout/Section'
 import SectionHeader from '../components/layout/SectionHeader'
 import Reveal from '../components/layout/Reveal'
-import StatCard from '../components/about/StatCard'
+import StatsTerminal from '../components/about/StatsTerminal'
 import BrandingCard from '../components/about/BrandingCard'
-import { ABOUT_PARAGRAPHS, ABOUT_HIGHLIGHTS, ABOUT_STATS } from '../data/about'
+import { ABOUT_PARAGRAPHS, ABOUT_HIGHLIGHTS } from '../data/about'
 
 /**
  * About Me section. Uses the standard <Section> wrapper for anchor id
@@ -48,12 +48,8 @@ export default function About() {
       </div>
 
       {/* Stat row */}
-      <div className="mt-16 grid grid-cols-2 gap-4 md:grid-cols-4">
-        {ABOUT_STATS.map((stat, index) => (
-          <Reveal key={stat.label} delay={0.1 + index * 0.08}>
-            <StatCard icon={stat.icon} value={stat.value} label={stat.label} />
-          </Reveal>
-        ))}
+      <div className="mt-16">
+        <StatsTerminal />
       </div>
     </Section>
   )

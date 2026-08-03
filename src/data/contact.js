@@ -18,7 +18,7 @@ export const CONTACT_INFO = [
   },
   {
     label: 'Availability',
-    value: 'Open to new opportunities',
+    value: 'Open to internships & collabs',
     icon: FiClock,
   },
 ]

@@ -4,7 +4,7 @@
  */
 export const HERO_NAME = 'Yuan Benedict A. Chavez'
 
-export const HERO_ROLES = ['Full Stack Developer', 'UI/UX Designer', 'Problem Solver']
+export const HERO_ROLES = ['CS Student', 'Full-Stack Developer', 'Problem Solver']
 
 export const HERO_TAGLINE =
-  'Building digital experiences that combine beautiful design with scalable technology.'
+  'Computer Science student building full-stack projects and learning to turn ideas into working products.'
