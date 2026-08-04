@@ -31,6 +31,8 @@
   --color-cyan: #93c5fd;
   --color-blue: #60a5fa;
 
+  --color-grid-line: rgba(148, 163, 184, 0.09);
+
   --font-display: "Clash Display", "General Sans", sans-serif;
   --font-body: "Switzer", "Inter", sans-serif;
   --font-mono: "JetBrains Mono", ui-monospace, monospace;
@@ -66,6 +68,33 @@
     0%, 100% { transform: translate(0, 0) scale(1); }
     50% { transform: translate(4%, 8%) scale(1.06); }
   }
+}
+
+/* -------------------------------------------------------------------- */
+/* Light mode — overrides the same custom properties @theme defines     */
+/* above, so every utility/component that already reads var(--color-*)  */
+/* re-themes automatically. Toggled by ThemeProvider (src/context/       */
+/* ThemeContext.jsx) adding/removing `.light` on <html>; the inline      */
+/* script in index.html sets this class before first paint too, to      */
+/* avoid a flash of the wrong theme.                                    */
+/* -------------------------------------------------------------------- */
+.light {
+  --color-bg: #f8fafc;
+  --color-bg-secondary: #eef2f7;
+  --color-surface: rgba(255, 255, 255, 0.72);
+  --color-surface-hover: rgba(255, 255, 255, 0.92);
+  --color-border: rgba(15, 23, 42, 0.09);
+  --color-border-strong: rgba(15, 23, 42, 0.16);
+
+  --color-ink: #0f172a;
+  --color-ink-muted: #334155;
+  --color-ink-faint: #64748b;
+
+  --color-purple: #1d4ed8;
+  --color-cyan: #3b82f6;
+  --color-blue: #2563eb;
+
+  --color-grid-line: rgba(51, 65, 85, 0.07);
 }
 
 @layer base {

@@ -1,5 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
+import { Toaster } from 'sonner'
 import { useLenis } from './hooks/useLenis'
+import { useTheme } from './context/ThemeContext'
 import MainLayout from './layouts/MainLayout'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
@@ -12,6 +14,7 @@ import LoadingScreen from './components/effects/LoadingScreen'
  */
 function App() {
   useLenis()
+  const { theme } = useTheme()
 
   return (
     <>
@@ -22,6 +25,17 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
+      <Toaster
+        theme={theme}
+        position="bottom-right"
+        toastOptions={{
+          style: {
+            background: 'var(--color-bg-secondary)',
+            border: '1px solid var(--color-border)',
+            color: 'var(--color-ink)',
+          },
+        }}
+      />
     </>
   )
 }

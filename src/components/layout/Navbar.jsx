@@ -4,6 +4,7 @@ import { FiMenu, FiX } from 'react-icons/fi'
 import { NAV_LINKS } from '../../data/navLinks'
 import { SITE_NAME } from '../../constants/site'
 import Container from '../ui/Container'
+import ThemeToggle from './ThemeToggle'
 import { cn } from '../../lib/cn'
 
 /**
@@ -99,16 +100,20 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Mobile toggle */}
-        <button
-          type="button"
-          aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-          aria-expanded={isMenuOpen}
-          onClick={() => setIsMenuOpen((open) => !open)}
-          className="grid h-10 w-10 place-items-center rounded-full text-ink md:hidden"
-        >
-          {isMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
-        </button>
+        {/* Theme toggle + mobile menu trigger */}
+        <div className="flex items-center gap-3">
+          <ThemeToggle />
+
+          <button
+            type="button"
+            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="grid h-10 w-10 place-items-center rounded-full text-ink md:hidden"
+          >
+            {isMenuOpen ? <FiX size={20} /> : <FiMenu size={20} />}
+          </button>
+        </div>
       </Container>
 
       {/* Mobile menu panel */}

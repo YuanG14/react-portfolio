@@ -55,7 +55,7 @@ export const SKILL_CATEGORIES = [
     description: 'Designing reliable APIs and data layers that scale with the product.',
     technologies: [
       { name: 'Node.js', icon: SiNodedotjs, color: '#3C873A', description: 'Server-side JavaScript runtime.', proficiency: 82 },
-      { name: 'Express', icon: SiExpress, color: '#FAFAFA', description: 'Minimal, flexible API framework.', proficiency: 78 },
+      { name: 'Express', icon: SiExpress, color: 'var(--color-ink)', description: 'Minimal, flexible API framework.', proficiency: 78 },
       { name: 'REST APIs', icon: TbApi, color: '#22D3EE', description: 'Designing clean, predictable endpoints.', proficiency: 85 },
       { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169E1', description: 'Relational data modeling.', proficiency: 75 },
       { name: 'MongoDB', icon: SiMongodb, color: '#47A248', description: 'Flexible document storage.', proficiency: 72 },
@@ -68,7 +68,7 @@ export const SKILL_CATEGORIES = [
     description: 'The everyday toolkit that keeps development fast and organized.',
     technologies: [
       { name: 'Git', icon: SiGit, color: '#F05032', description: 'Version control, every project.', proficiency: 88 },
-      { name: 'GitHub', icon: SiGithub, color: '#FAFAFA', description: 'Hosting, review, and CI.', proficiency: 85 },
+      { name: 'GitHub', icon: SiGithub, color: 'var(--color-ink)', description: 'Hosting, review, and CI.', proficiency: 85 },
       { name: 'VS Code', icon: DiVisualstudio, color: '#007ACC', description: 'Daily editor, tuned to taste.', proficiency: 92 },
       { name: 'Figma', icon: SiFigma, color: '#F24E1E', description: 'UI design and prototyping.', proficiency: 70 },
       { name: 'Docker', icon: SiDocker, color: '#2496ED', description: 'Consistent, containerized environments.', proficiency: 65 },

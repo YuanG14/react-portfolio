@@ -44,7 +44,7 @@ export default function GridBackground() {
         '--spot-x': '50%',
         '--spot-y': '30%',
         backgroundImage:
-          'linear-gradient(rgba(148,163,184,0.09) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,0.09) 1px, transparent 1px)',
+          'linear-gradient(var(--color-grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px)',
         backgroundSize: '64px 64px',
         maskImage:
           'radial-gradient(420px circle at var(--spot-x) var(--spot-y), black, transparent 100%)',

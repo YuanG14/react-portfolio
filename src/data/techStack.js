@@ -56,7 +56,7 @@ export const TECH_STACK = [
   {
     name: 'Express',
     icon: SiExpress,
-    color: '#FAFAFA',
+    color: 'var(--color-ink)',
     description: 'Minimal, flexible APIs on Node.',
     level: 'Intermediate',
   },
@@ -77,7 +77,7 @@ export const TECH_STACK = [
   {
     name: 'GitHub',
     icon: SiGithub,
-    color: '#FAFAFA',
+    color: 'var(--color-ink)',
     description: 'Hosting, review, and CI for my repos.',
     level: 'Advanced',
   },

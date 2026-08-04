@@ -10,6 +10,27 @@
     />
     <title>Yuan Benedict A. Chavez — Portfolio</title>
 
+    <!-- Set the theme class before first paint so there's no flash of
+         the wrong theme. Reads a previously saved choice; falls back
+         to the OS-level preference; defaults to dark. Kept tiny and
+         inline (not a src file) since it must block render. -->
+    <script>
+      (function () {
+        try {
+          var saved = localStorage.getItem('theme')
+          var theme =
+            saved === 'light' || saved === 'dark'
+              ? saved
+              : window.matchMedia('(prefers-color-scheme: light)').matches
+                ? 'light'
+                : 'dark'
+          if (theme === 'light') document.documentElement.classList.add('light')
+        } catch (e) {
+          /* localStorage/matchMedia unavailable — default dark stands */
+        }
+      })()
+    </script>
+
     <!-- Preconnect for font performance -->
     <link rel="preconnect" href="https://api.fontshare.com" crossorigin />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
