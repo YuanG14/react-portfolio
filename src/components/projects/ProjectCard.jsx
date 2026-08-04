@@ -1,57 +1,66 @@
-import { FiArrowUpRight } from 'react-icons/fi'
+import { FiZap } from 'react-icons/fi'
 import TiltCard from '../ui/TiltCard'
-import Button from '../ui/Button'
-import SkillPill from '../skills/SkillPill'
+import StatusBadge from '../about/StatusBadge'
+import CategoryTag from './CategoryTag'
+import TechBadge from './TechBadge'
+import DeviceMockup from './DeviceMockup'
 import ProjectImage from './ProjectImage'
+import ProjectActions from './ProjectActions'
 
 /**
- * A single project showcase card. All hover polish (tilt, glow,
- * lift, floating shadow) lives in TiltCard — this component only
- * arranges content, so it never duplicates that interaction logic.
+ * A single project showcase card — one of the secondary projects
+ * below <FeaturedProject>. All hover polish (tilt, glow, lift,
+ * floating shadow) lives in TiltCard; this component only arranges
+ * content, so it never duplicates that interaction logic. Uses
+ * glass-featured (via TiltCard's contentClassName) rather than the
+ * plain .glass ProjectCard previously used, matching the "product
+ * showcase" surface the R5 brief called for.
  *
  * @param {object} project - one entry from src/data/projects.js
  * @param {(project: object) => void} onViewDetails - opens the shared
  *   ProjectModal for this project (see sections/Projects.jsx)
  */
 export default function ProjectCard({ project, onViewDetails }) {
-  const { title, description, image, tech, highlights } = project
+  const { title, description, image, category, status, tech, keyHighlight, links } = project
 
   return (
-    <TiltCard className="h-full" contentClassName="glass flex h-full flex-col">
-      <div className="aspect-[16/10] w-full">
-        <ProjectImage src={image} title={title} />
-      </div>
+    <TiltCard className="h-full" contentClassName="glass-featured flex h-full flex-col">
+      <DeviceMockup variant="browser" className="border-b border-border">
+        <ProjectImage
+          src={image}
+          title={title}
+          className="transition-transform duration-500 group-hover:scale-105"
+        />
+      </DeviceMockup>
 
       <div className="flex flex-1 flex-col p-6 md:p-8">
-        <h3 className="font-display text-xl font-medium text-ink">{title}</h3>
+        <div className="flex flex-wrap items-center gap-2">
+          <StatusBadge label={status} />
+          <CategoryTag label={category} />
+        </div>
+
+        <h3 className="mt-4 font-display text-xl font-medium text-ink">{title}</h3>
         <p className="mt-2 text-sm text-ink-muted">{description}</p>
+
+        {keyHighlight && (
+          <div className="mt-4 flex items-start gap-2 rounded-xl bg-surface px-3 py-2.5 text-sm text-ink-muted">
+            <FiZap aria-hidden="true" className="mt-0.5 shrink-0 text-cyan" />
+            {keyHighlight}
+          </div>
+        )}
 
         <div className="mt-4 flex flex-wrap gap-2">
           {tech.map((item) => (
-            <SkillPill key={item} label={item} className="px-3 py-1 text-xs" />
+            <TechBadge key={item} label={item} />
           ))}
         </div>
 
-        {highlights?.length > 0 && (
-          <ul className="mt-5 space-y-1.5">
-            {highlights.map((point) => (
-              <li key={point} className="flex items-start gap-2 text-sm text-ink-muted">
-                <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-cyan" />
-                {point}
-              </li>
-            ))}
-          </ul>
-        )}
-
-        <div className="mt-6 flex items-center border-t border-border pt-6">
-          <Button
-            type="button"
-            onClick={() => onViewDetails(project)}
-            variant="primary"
-            className="ml-auto px-4 py-2 text-xs"
-          >
-            View Details <FiArrowUpRight aria-hidden="true" />
-          </Button>
+        <div className="mt-6 border-t border-border pt-6">
+          <ProjectActions
+            links={links}
+            onViewDetails={() => onViewDetails(project)}
+            size="secondary"
+          />
         </div>
       </div>
     </TiltCard>

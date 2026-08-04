@@ -1,19 +1,24 @@
-import SkillPill from '../skills/SkillPill'
+import TechBadge from './TechBadge'
 
 /**
  * Declarative map of every detail section a project can have.
  * `type` controls how the value renders: plain string -> paragraph,
- * 'list' -> bullet list, 'pills' -> SkillPill row. Adding, removing,
+ * 'list' -> bullet list, 'pills' -> TechBadge row. Adding, removing,
  * or reordering a section is a one-line change here — never a
- * copy-pasted JSX block per section.
+ * copy-pasted JSX block per section. Order here is the case-study
+ * order the R5 brief asked for: overview, problem, solution,
+ * architecture, features, tech stack, challenges, lessons learned,
+ * future improvements.
  */
 const DETAIL_SECTIONS = [
   { key: 'overview', label: 'Overview' },
   { key: 'problem', label: 'Problem' },
   { key: 'solution', label: 'Solution' },
-  { key: 'features', label: 'Features', type: 'list' },
+  { key: 'architecture', label: 'Architecture' },
+  { key: 'features', label: 'Key Features', type: 'list' },
   { key: 'technologies', label: 'Technologies', type: 'pills' },
   { key: 'challenges', label: 'Challenges' },
+  { key: 'lessonsLearned', label: 'Lessons Learned', type: 'list' },
   { key: 'futureImprovements', label: 'Future Improvements', type: 'list' },
 ]
 
@@ -50,7 +55,7 @@ export default function ProjectDetails({ details }) {
             {type === 'pills' && (
               <div className="mt-3 flex flex-wrap gap-2">
                 {content.map((item) => (
-                  <SkillPill key={item} label={item} className="px-3 py-1 text-xs" />
+                  <TechBadge key={item} label={item} />
                 ))}
               </div>
             )}

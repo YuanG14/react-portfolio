@@ -300,9 +300,18 @@
       var(--color-bg-secondary);
   }
   .section-bg-projects {
+    /* R5: added a faint blueprint grid (finer + lower-opacity than
+       About's dot texture, since Projects needs to stay readable
+       behind larger cards/mockups) plus a second, softer spotlight —
+       reads as "engineering schematic" rather than decoration. */
     background:
       radial-gradient(820px circle at 90% 0%, rgba(96, 165, 250, 0.07), transparent 65%),
+      radial-gradient(700px circle at 6% 100%, rgba(147, 197, 253, 0.05), transparent 60%),
+      linear-gradient(var(--color-grid-line) 1px, transparent 1px) 0 0 / 100% 64px,
+      linear-gradient(90deg, var(--color-grid-line) 1px, transparent 1px) 0 0 / 64px 100%,
       var(--color-bg);
+    mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 8%, black 92%, transparent);
   }
   .section-bg-experience {
     background:
