@@ -26,7 +26,7 @@ import ProjectActions from './ProjectActions'
  */
 export default function FeaturedProject({ project, onViewDetails }) {
   const { ref, shouldReduceMotion, handlePointerMove, handlePointerLeave, style } = usePointerTilt(4)
-  const { title, tagline, image, category, status, tech, highlights, links } = project
+  const { title, tagline, image, category, status, tech, highlights } = project
 
   return (
     <Reveal>
@@ -75,11 +75,7 @@ export default function FeaturedProject({ project, onViewDetails }) {
             ))}
           </div>
 
-          <ProjectActions
-            links={links}
-            onViewDetails={() => onViewDetails(project)}
-            className="mt-8"
-          />
+          <ProjectActions onViewDetails={() => onViewDetails(project)} className="mt-8" />
         </div>
 
         <div className="flex items-center border-t border-border bg-bg-secondary/40 lg:border-l lg:border-t-0">

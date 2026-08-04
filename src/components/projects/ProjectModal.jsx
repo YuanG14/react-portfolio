@@ -6,7 +6,6 @@ import { scaleIn } from '../../animations/variants'
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock'
 import ProjectImage from './ProjectImage'
 import ProjectDetails from './ProjectDetails'
-import ProjectActions from './ProjectActions'
 import StatusBadge from '../about/StatusBadge'
 import CategoryTag from './CategoryTag'
 
@@ -98,10 +97,6 @@ export default function ProjectModal({ project, onClose }) {
               <div className="mt-6">
                 <ProjectDetails details={project?.details} />
               </div>
-
-              {project && (
-                <ProjectActions links={project.links} size="secondary" className="mt-8" />
-              )}
             </div>
           </motion.div>
         </motion.div>

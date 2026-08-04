@@ -21,7 +21,7 @@ import ProjectActions from './ProjectActions'
  *   ProjectModal for this project (see sections/Projects.jsx)
  */
 export default function ProjectCard({ project, onViewDetails }) {
-  const { title, description, image, category, status, tech, keyHighlight, links } = project
+  const { title, description, image, category, status, tech, keyHighlight } = project
 
   return (
     <TiltCard className="h-full" contentClassName="glass-featured flex h-full flex-col">
@@ -56,11 +56,7 @@ export default function ProjectCard({ project, onViewDetails }) {
         </div>
 
         <div className="mt-6 border-t border-border pt-6">
-          <ProjectActions
-            links={links}
-            onViewDetails={() => onViewDetails(project)}
-            size="secondary"
-          />
+          <ProjectActions onViewDetails={() => onViewDetails(project)} size="secondary" />
         </div>
       </div>
     </TiltCard>
