@@ -1,5 +1,5 @@
-import { useRef } from 'react'
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
+import { usePointerTilt } from '../../hooks/usePointerTilt'
 import { HERO_NAME } from '../../data/hero'
 import {
   BRANDING_ROLES,
@@ -24,37 +24,29 @@ const initials = HERO_NAME.split(' ')
  * About section's premium identity-card visual — replaces the old
  * placeholder (formerly AboutVisual). Lives in the same slot/sizing
  * convention as Hero's ProfileCard so the two floating cards read as
- * one system: a continuous gentle float loop, plus (new here) a
- * cursor-tracking tilt/glow and an animated gradient-border shimmer.
+ * one system: a continuous gentle float loop, a cursor-tracking
+ * tilt/glow (via the shared usePointerTilt hook — this file
+ * previously hand-rolled that same pointerX/Y → rotateX/Y/glow math
+ * independently; consolidated now that ProfileCard already migrated
+ * to the hook in R2, so the two identity cards share one
+ * implementation instead of two copies of the same physics), and an
+ * animated gradient-border shimmer.
+ *
+ * Promoted to the `.glass-featured` surface tier (R3) to match
+ * ProfileCard — both are the site's flagship identity panels, so
+ * they now share the strongest tier rather than one sitting a level
+ * below the other.
+ *
  * Entrance animation is left to the <Reveal> wrapper in About.jsx,
  * same as the component it replaces — this file only owns the
- * always-on float/parallax/shimmer loops.
+ * always-on float/tilt/shimmer loops.
  *
  * Composed from small reusable pieces (StatusBadge, TechChip,
  * CurrentProject) so each can be restyled or reused independently.
  */
 export default function BrandingCard() {
-  const ref = useRef(null)
   const shouldReduceMotion = useReducedMotion()
-
-  const pointerX = useMotionValue(0.5)
-  const pointerY = useMotionValue(0.5)
-  const rotateX = useSpring(useTransform(pointerY, [0, 1], [5, -5]), { stiffness: 300, damping: 30 })
-  const rotateY = useSpring(useTransform(pointerX, [0, 1], [-5, 5]), { stiffness: 300, damping: 30 })
-  const glowX = useTransform(pointerX, [0, 1], ['0%', '100%'])
-  const glowY = useTransform(pointerY, [0, 1], ['0%', '100%'])
-
-  function handlePointerMove(event) {
-    if (shouldReduceMotion || !ref.current) return
-    const rect = ref.current.getBoundingClientRect()
-    pointerX.set((event.clientX - rect.left) / rect.width)
-    pointerY.set((event.clientY - rect.top) / rect.height)
-  }
-
-  function handlePointerLeave() {
-    pointerX.set(0.5)
-    pointerY.set(0.5)
-  }
+  const { ref, handlePointerMove, handlePointerLeave, style } = usePointerTilt(5)
 
   return (
     <div className="relative mx-auto w-full max-w-sm">
@@ -64,13 +56,7 @@ export default function BrandingCard() {
         onPointerLeave={handlePointerLeave}
         animate={shouldReduceMotion ? undefined : { y: [0, -10, 0] }}
         transition={{ duration: 7, repeat: Infinity, ease: 'easeInOut' }}
-        style={{
-          rotateX: shouldReduceMotion ? 0 : rotateX,
-          rotateY: shouldReduceMotion ? 0 : rotateY,
-          transformPerspective: 1200,
-          '--glow-x': glowX,
-          '--glow-y': glowY,
-        }}
+        style={{ ...style, transformPerspective: 1200 }}
         className="group relative rounded-[28px]"
       >
         {/* Cursor-tracking glow */}
@@ -85,7 +71,7 @@ export default function BrandingCard() {
           />
         )}
 
-        <div className="glass-elevated relative overflow-hidden rounded-[28px] px-6 py-8">
+        <div className="glass-featured relative overflow-hidden rounded-[28px] px-6 py-8">
           {/* Background details layer — mesh blobs, dotted grid, a
               reflection streak, and the giant monogram all sit behind
               the real content below. */}
@@ -152,7 +138,9 @@ export default function BrandingCard() {
               </ul>
             </div>
 
-            <p className="text-sm italic text-ink-faint">{BRANDING_STATEMENT}</p>
+            <p className="border-t border-border pt-4 text-sm italic leading-relaxed text-ink-faint">
+              {BRANDING_STATEMENT}
+            </p>
           </div>
         </div>
       </motion.div>

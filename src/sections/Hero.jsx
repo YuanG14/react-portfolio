@@ -7,6 +7,7 @@ import Button from '../components/ui/Button'
 import Magnetic from '../components/ui/Magnetic'
 import TypingText from '../components/ui/TypingText'
 import MouseGlow from '../components/hero/MouseGlow'
+import HeroGrid from '../components/hero/HeroGrid'
 import ProfileCard from '../components/hero/ProfileCard'
 import { HERO_NAME, HERO_ROLES, HERO_TAGLINE } from '../data/hero'
 
@@ -33,39 +34,50 @@ export default function Hero() {
       ref={heroRef}
       className="relative flex min-h-screen items-center overflow-hidden pb-20 pt-28"
     >
+      <HeroGrid />
       <MouseGlow containerRef={heroRef} />
 
       <Container className="grid items-center gap-16 lg:grid-cols-[1.1fr_0.9fr]">
         {/* Text column */}
         <div>
           <Reveal>
-            <p className="font-mono text-sm text-ink-faint">Hello,</p>
+            <p className="font-mono text-sm tracking-wide text-ink-faint">Hello,</p>
           </Reveal>
 
           <Reveal delay={0.1}>
-            <h1 className="mt-3 text-display-xl font-display font-semibold leading-[1.05] text-ink">
+            <h1 className="mt-4 text-balance text-display-xl font-display font-semibold leading-[1.05] text-ink">
               I&apos;m {HERO_NAME}.
             </h1>
           </Reveal>
 
           <Reveal delay={0.2}>
-            <div className="mt-4 text-display-sm font-display font-medium text-gradient-accent">
+            <div className="mt-3 text-display-sm font-display font-medium text-gradient-accent">
               <TypingText words={HERO_ROLES} />
             </div>
           </Reveal>
 
           <Reveal delay={0.3}>
-            <p className="mt-6 max-w-lg text-ink-muted">{HERO_TAGLINE}</p>
+            <p className="mt-6 max-w-lg leading-relaxed text-ink-muted">{HERO_TAGLINE}</p>
           </Reveal>
 
           <Reveal delay={0.4} className="mt-10 flex flex-wrap gap-4">
             <Magnetic>
-              <Button as="a" href="#projects" variant="primary">
+              <Button
+                as="a"
+                href="#projects"
+                variant="primary"
+                className="shadow-[var(--shadow-card)] transition-shadow duration-500 ease-[var(--ease-premium)] hover:shadow-[var(--shadow-card-hover)] focus-visible:outline-offset-4"
+              >
                 View Projects
               </Button>
             </Magnetic>
             <Magnetic>
-              <Button as="a" href="#contact" variant="secondary">
+              <Button
+                as="a"
+                href="#contact"
+                variant="secondary"
+                className="shadow-[var(--shadow-card)] transition-shadow duration-500 ease-[var(--ease-premium)] hover:shadow-[var(--shadow-card-hover)] focus-visible:outline-offset-4"
+              >
                 Contact Me
               </Button>
             </Magnetic>
@@ -92,9 +104,9 @@ export default function Hero() {
           opacity: { duration: 0.8, delay: 1.2 },
           y: { duration: 1.8, repeat: Infinity, ease: 'easeInOut', delay: 1.2 },
         }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-ink-faint transition-colors hover:text-ink"
+        className="glass absolute bottom-8 left-1/2 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full text-ink-faint transition-colors duration-300 hover:border-border-strong hover:text-ink"
       >
-        <FiChevronDown size={22} />
+        <FiChevronDown size={18} />
       </motion.a>
     </section>
   )

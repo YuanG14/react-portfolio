@@ -3,12 +3,22 @@ import SectionHeader from '../components/layout/SectionHeader'
 import Reveal from '../components/layout/Reveal'
 import StatsTerminal from '../components/about/StatsTerminal'
 import BrandingCard from '../components/about/BrandingCard'
+import FeatureCard from '../components/about/FeatureCard'
 import { ABOUT_PARAGRAPHS, ABOUT_HIGHLIGHTS } from '../data/about'
 
 /**
  * About Me section. Uses the standard <Section> wrapper for anchor id
  * + vertical rhythm + shared container width — same pattern every
  * top-level section should follow (see Section.jsx docstring).
+ *
+ * R3: same content and same two-column/stat-row layout as before —
+ * refined for rhythm and hierarchy rather than restructured. The
+ * bio's first paragraph now reads as a lede (larger, full-strength
+ * ink) with the second as supporting detail (muted, more separated),
+ * so the section opens with a stronger single idea instead of two
+ * paragraphs of equal visual weight. The highlight row now uses
+ * FeatureCard so those four traits read as real cards, not a bare
+ * icon+text list.
  */
 export default function About() {
   return (
@@ -20,22 +30,22 @@ export default function About() {
         <div>
           {ABOUT_PARAGRAPHS.map((paragraph, index) => (
             <Reveal key={paragraph.slice(0, 24)} delay={0.1 + index * 0.1}>
-              <p className="mt-4 max-w-xl text-ink-muted first:mt-0">{paragraph}</p>
+              <p
+                className={
+                  index === 0
+                    ? 'max-w-lg text-lg leading-relaxed text-ink'
+                    : 'mt-5 max-w-lg leading-relaxed text-ink-muted'
+                }
+              >
+                {paragraph}
+              </p>
             </Reveal>
           ))}
 
-          <div className="mt-10 grid gap-5 sm:grid-cols-2">
-            {ABOUT_HIGHLIGHTS.map(({ icon: Icon, title, description }, index) => (
+          <div className="mt-12 grid gap-5 sm:grid-cols-2">
+            {ABOUT_HIGHLIGHTS.map(({ icon, title, description }, index) => (
               <Reveal key={title} delay={0.2 + index * 0.08}>
-                <div className="flex gap-3">
-                  <div className="glass flex h-10 w-10 shrink-0 items-center justify-center rounded-xl text-cyan">
-                    <Icon aria-hidden="true" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-medium text-ink">{title}</p>
-                    <p className="mt-1 text-sm text-ink-muted">{description}</p>
-                  </div>
-                </div>
+                <FeatureCard icon={icon} title={title} description={description} />
               </Reveal>
             ))}
           </div>
