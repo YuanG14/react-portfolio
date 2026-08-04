@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { buttonPress } from '../../animations/variants'
 import { cn } from '../../lib/cn'
 
 const variants = {
@@ -38,11 +39,9 @@ export default function Button({
 
   return (
     <Tag
-      whileHover={{ y: -2 }}
-      whileTap={{ scale: 0.97 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+      {...buttonPress}
       className={cn(
-        'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm transition-[background-position,background-color,border-color,color] duration-300',
+        'inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm transition-[background-position,background-color,border-color,color] duration-300 ease-[var(--ease-premium)]',
         variants[variant],
         className
       )}

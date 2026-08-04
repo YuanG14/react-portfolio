@@ -32,6 +32,37 @@
   --color-blue: #60a5fa;
 
   --color-grid-line: rgba(148, 163, 184, 0.09);
+  --color-border-glow: rgba(96, 165, 250, 0.4);
+
+  /* ------------------------------------------------------------ */
+  /* Motion tokens — every hover/entrance transition across the    */
+  /* site should reach for one of these instead of inventing its   */
+  /* own duration/easing pair. Mirrors the spring presets in       */
+  /* src/animations/variants.js (hoverInteractive/hoverFeature/     */
+  /* buttonPress), which are the JS-side counterpart for Framer     */
+  /* Motion props that can't be expressed as CSS transitions.       */
+  /* ------------------------------------------------------------ */
+  --ease-premium: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 200ms;
+  --duration-base: 300ms;
+  --duration-slow: 500ms;
+
+  /* ------------------------------------------------------------ */
+  /* Elevation system — three shadow tiers matching the three card */
+  /* variants below (default/elevated/featured). Cards pick a      */
+  /* resting shadow and a hover shadow from the same tier; nothing  */
+  /* should hand-write a one-off rgba shadow anymore.               */
+  /* ------------------------------------------------------------ */
+  --shadow-card: 0 20px 60px -25px rgba(0, 0, 0, 0.6);
+  --shadow-card-hover: 0 35px 90px -20px rgba(37, 99, 235, 0.35);
+  --shadow-featured: 0 40px 100px -20px rgba(37, 99, 235, 0.45);
+
+  /* Radius scale — names the three sizes already in use (chip/pill,
+     tile, card) so components pick a token instead of guessing
+     between rounded-xl/2xl/3xl. */
+  --radius-chip: 999px;
+  --radius-tile: 1rem;
+  --radius-card: 1.5rem;
 
   --font-display: "Clash Display", "General Sans", sans-serif;
   --font-body: "Switzer", "Inter", sans-serif;
@@ -95,6 +126,7 @@
   --color-blue: #2563eb;
 
   --color-grid-line: rgba(51, 65, 85, 0.07);
+  --color-border-glow: rgba(37, 99, 235, 0.35);
 }
 
 @layer base {
@@ -171,6 +203,33 @@
     box-shadow:
       inset 0 1px 0 0 rgba(148, 163, 184, 0.08),
       0 20px 45px -20px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Card variant 3 of 3 — reserved for the site's flagship, most-
+     interactive surfaces (project showcase cards, hero/identity
+     cards). Strongest blur/border of the three tiers, and pairs with
+     --shadow-featured + the hoverFeature motion preset rather than
+     glow numbers invented per component. Not yet applied to any
+     section — section-specific phases adopt it where the design
+     audit called for a stronger surface (e.g. ProjectCard). */
+  .glass-featured {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border-strong);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    box-shadow:
+      inset 0 1px 0 0 rgba(148, 163, 184, 0.1),
+      var(--shadow-card);
+    transition:
+      box-shadow var(--duration-slow) var(--ease-premium),
+      border-color var(--duration-base) var(--ease-premium);
+  }
+  .glass-featured:hover,
+  .glass-featured:focus-within {
+    border-color: var(--color-border-strong);
+    box-shadow:
+      inset 0 1px 0 0 rgba(148, 163, 184, 0.1),
+      var(--shadow-featured);
   }
 
   /* Vertical rhythm system — every top-level section uses this so

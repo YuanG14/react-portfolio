@@ -1,5 +1,6 @@
-import { useRef } from 'react'
-import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion'
+import { motion } from 'framer-motion'
+import { usePointerTilt } from '../../hooks/usePointerTilt'
+import { hoverFeature } from '../../animations/variants'
 import { cn } from '../../lib/cn'
 
 /**
@@ -9,50 +10,30 @@ import { cn } from '../../lib/cn'
  * needs this treatment (showcase cards now, other feature tiles
  * later). Falls back to a static wrapper under prefers-reduced-motion.
  *
+ * Tilt/glow physics live in usePointerTilt (shared with any other
+ * card that wants this same treatment); this component only owns the
+ * lift/shadow/glow-layer presentation on top of it, using the
+ * hoverFeature interaction tier and --shadow-featured token so it
+ * stays in sync with the rest of the site's elevation system instead
+ * of hard-coding its own numbers.
+ *
  * Two-layer structure on purpose: the outer layer stays overflow-
  * visible so the blurred glow can bleed past the edges, while
  * `contentClassName` goes on an inner overflow-hidden layer that
  * actually clips the rounded corners (e.g. for an edge-to-edge image).
  */
 export default function TiltCard({ children, className, contentClassName }) {
-  const ref = useRef(null)
-  const shouldReduceMotion = useReducedMotion()
-
-  const pointerX = useMotionValue(0.5)
-  const pointerY = useMotionValue(0.5)
-  const rotateX = useSpring(useTransform(pointerY, [0, 1], [8, -8]), { stiffness: 300, damping: 30 })
-  const rotateY = useSpring(useTransform(pointerX, [0, 1], [-8, 8]), { stiffness: 300, damping: 30 })
-  const glowX = useTransform(pointerX, [0, 1], ['0%', '100%'])
-  const glowY = useTransform(pointerY, [0, 1], ['0%', '100%'])
-
-  function handlePointerMove(event) {
-    if (shouldReduceMotion || !ref.current) return
-    const rect = ref.current.getBoundingClientRect()
-    pointerX.set((event.clientX - rect.left) / rect.width)
-    pointerY.set((event.clientY - rect.top) / rect.height)
-  }
-
-  function handlePointerLeave() {
-    pointerX.set(0.5)
-    pointerY.set(0.5)
-  }
+  const { ref, shouldReduceMotion, handlePointerMove, handlePointerLeave, style } = usePointerTilt(8)
 
   return (
     <motion.div
       ref={ref}
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
-      whileHover={{ y: -8, scale: 1.015 }}
-      transition={{ type: 'spring', stiffness: 260, damping: 22 }}
-      style={{
-        rotateX: shouldReduceMotion ? 0 : rotateX,
-        rotateY: shouldReduceMotion ? 0 : rotateY,
-        transformPerspective: 1000,
-        '--glow-x': glowX,
-        '--glow-y': glowY,
-      }}
+      {...hoverFeature}
+      style={{ ...style, transformPerspective: 1000 }}
       className={cn(
-        'group relative rounded-3xl shadow-[0_20px_60px_-25px_rgba(0,0,0,0.6)] transition-shadow duration-500 hover:shadow-[0_35px_90px_-20px_rgba(37,99,235,0.35)]',
+        'group relative rounded-3xl shadow-[var(--shadow-card)] transition-shadow duration-500 hover:shadow-[var(--shadow-featured)]',
         className
       )}
     >
