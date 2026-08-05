@@ -6,6 +6,8 @@ import { scaleIn } from '../../animations/variants'
 import { useBodyScrollLock } from '../../hooks/useBodyScrollLock'
 import ProjectImage from './ProjectImage'
 import ProjectDetails from './ProjectDetails'
+import StatusBadge from '../about/StatusBadge'
+import CategoryTag from './CategoryTag'
 
 /**
  * A single shared modal for the whole Projects section — Projects.jsx
@@ -82,7 +84,14 @@ export default function ProjectModal({ project, onClose }) {
               onWheel={(event) => event.stopPropagation()}
               onTouchMove={(event) => event.stopPropagation()}
             >
-              <h3 className="font-display text-2xl font-medium text-ink">{project?.title}</h3>
+              {project && (
+                <div className="flex flex-wrap items-center gap-2">
+                  <StatusBadge label={project.status} />
+                  <CategoryTag label={project.category} />
+                </div>
+              )}
+
+              <h3 className="mt-4 font-display text-2xl font-medium text-ink">{project?.title}</h3>
               <p className="mt-2 text-sm text-ink-muted">{project?.description}</p>
 
               <div className="mt-6">

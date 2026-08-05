@@ -40,11 +40,17 @@ export const ABOUT_HIGHLIGHTS = [
  * Headline stats shown in the row beneath the bio/visual columns.
  * `Projects Built` counts PROJECTS directly so this never overstates
  * what's actually shown on the site.
+ *
+ * `value` is numeric (rather than a pre-formatted string) so
+ * StatsTerminal can count up to it with the shared useCountUp hook;
+ * `suffix` is appended after the animated number. Entries with no
+ * meaningful numeric target (Cups of Coffee) use `display` instead,
+ * which renders as-is with no count-up.
  */
 export const ABOUT_STATS = [
-  { icon: FiCalendar, value: '3+', label: 'Years Coding' },
-  { icon: FiFolder, value: `${PROJECTS.length}`, label: 'Projects Built' },
-  { icon: FiCode, value: '10+', label: 'Technologies' },
-  { icon: FiCoffee, value: '∞', label: 'Cups of Coffee' },
+  { icon: FiCalendar, value: 3, suffix: '+', label: 'Years Coding' },
+  { icon: FiFolder, value: PROJECTS.length, suffix: '', label: 'Projects Built' },
+  { icon: FiCode, value: 10, suffix: '+', label: 'Technologies' },
+  { icon: FiCoffee, display: '∞', label: 'Cups of Coffee' },
 ]
 

@@ -49,6 +49,19 @@ export default function MouseGlow({ containerRef }) {
             'radial-gradient(circle, rgba(37,99,235,0.35), rgba(96,165,250,0.18) 45%, transparent 75%)',
         }}
       />
+      {/* Tighter, brighter core riding on the same spring — reads as
+          a soft light source rather than a flat blurred disc, since
+          a single wide-radius blob alone loses depth at this size. */}
+      <motion.div
+        className="absolute h-[160px] w-[160px] rounded-full blur-[60px]"
+        style={{
+          x: springX,
+          y: springY,
+          translateX: '-50%',
+          translateY: '-50%',
+          background: 'radial-gradient(circle, rgba(147,197,253,0.3), transparent 70%)',
+        }}
+      />
     </div>
   )
 }
